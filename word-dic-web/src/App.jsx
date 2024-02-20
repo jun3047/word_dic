@@ -19,11 +19,15 @@ const App = () => {
       />
       <유사단어표현 />
       <활용표현문장
-        mean={'뜻'}
-        data={[]}
+        mean={'뜻이랍니다.'}
+        data={[
+          '공격적인 사람 좀 보소',
+          '너무 공격적인 표현은 좀 자제해야겠어',
+        ]}
         lastNum={4}
         nowPageNum={1}
         setNowPageNum={()=>{}}
+        word={word}
       />
     </div>
   );

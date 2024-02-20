@@ -1,8 +1,12 @@
 import PagiNation from "./PagiNation"
+import WordBox from "./WordBox"
 
 const 활용표현문장 = ({word, mean, data, lastNum, nowPageNum, setNowPageNum}) => {
 
-    // nowData를 만들고, word가 포함된 부분은 특수처리하기
+    const initWordData = data.slice((nowPageNum-1)*2, nowPageNum*2).map((text, i) => {
+        return text.split(word);
+    })
+
 
     return (
         <section className="px-40r flex flex-col items-center justify-center w-[50%] h-[100%] min-w-600r">
@@ -17,12 +21,19 @@ const 활용표현문장 = ({word, mean, data, lastNum, nowPageNum, setNowPageNu
             <p className="body-text text-[#636363] h-54r w-full flex items-center">
                 <span className="font-semibold text-[#434343] mr-4r">[뜻]</span> {mean}
             </p>
-            <p className="body-text text-[#636363] h-54r w-full flex items-center">
-                <span className="font-semibold text-[#434343] w-40r">1.</span> {mean}
-            </p>
-            <p className="body-text text-[#636363] h-54r w-full flex items-center">
-                <span className="font-semibold text-[#434343] w-40r">2.</span> {mean}
-            </p>
+            {
+                initWordData.map((text, i) => (
+                        <p key={i} className="body-text text-[#636363] h-54r w-full flex items-center">
+                            <span className="font-semibold text-[#434343] w-40r">{i+1}.</span>
+                            <p className="flex items-center gap-6r">
+                            {text[0]}
+                            <WordBox word={word} color={'yellow'} />
+                            {text[1]}
+                            </p>
+                        </p>
+                    )
+                )
+            }
             </div>
             <PagiNation
                 lastNum={lastNum}
