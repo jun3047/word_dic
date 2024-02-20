@@ -9,7 +9,7 @@ const App = () => {
   const word = '공격적인';
 
   return (
-    <div>
+    <div className='px-120r py-48r'>
       <SearchBar
         search={()=>console.log('search')}
         setSearchWord={(e)=>console.log(e.target.value)}
