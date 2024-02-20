@@ -1,4 +1,5 @@
 import PagiNation from "./PagiNation"
+import WordBox from "./WordBox"
 
 const 유사단어표현 = () => {
 
@@ -46,28 +47,6 @@ const FilterSelect = ({text, key}) => {
             <input style={{accentColor: 'black'}} className="mr-7r h-16r w-16r" type="checkbox" id={key} name="filter" value={key} />
             {text}
         </label>
-    )
-}
-
-const WordBox = ({word, color}) => {
-
-    let colorClass;
-    switch(color) {
-      case 'yellow':
-        colorClass = `bg-yellow-main-color`;
-        break;
-      case 'blue':
-        colorClass = `bg-blue-main-color`;
-        break;
-      // 다른 색상에 대한 case 추가해야함
-      default:
-        colorClass = ``;
-    }
-    
-    return (
-        <div class={`rounded-xl inline-flex items-center justify-center h-36r px-19r py-7r ${colorClass}`}>
-            <p className={`body-text font-bold text-white`}>{word}</p>
-        </div>
     )
 }
 
