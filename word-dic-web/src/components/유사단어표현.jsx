@@ -1,15 +1,19 @@
 import PagiNation from "./PagiNation"
 import WordBox from "./WordBox"
+import PopUp from './PopUp';
 
 const 유사단어표현 = () => {
 
+    const popup = false;
+
     return (
-        <main className="px-40r flex flex-col items-center justify-center w-[50%] h-[100%] min-w-600r">
+        <main className="relative px-40r flex flex-col items-center justify-center w-[50%] h-[100%] min-w-600r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
                 <h2 className="font-bold ml-37r headline-2">유사단어 표현</h2>
-                <div className="flex items-center justify-center w-40r h-40r bg-[#F1F1F1] rounded-full">
+                <div className={`flex items-center justify-center w-40r h-40r rounded-full ${popup && 'bg-[#F1F1F1]'}`}>
                     <img className="w-20r h-17r" src="/svg/alignIcon.svg" alt="alignIcon"/>
                 </div>
+                <PopUp on={popup}/>
             </header>
             <hr className="w-full h-1r bg-[#E5E5E5]"/>
             <fieldset className="flex gap-24r my-17r">
