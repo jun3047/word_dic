@@ -13,5 +13,8 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('./plugins/scrollbarHide.js'),
+    require('./plugins/baseStyles.js'),
+  ],
 };
