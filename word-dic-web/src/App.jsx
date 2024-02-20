@@ -1,10 +1,14 @@
 import React from 'react';
+import SearchBar from './components/SearchBar';
 
 const App = () => {
   return (
-    <h2 className="text-xl font-bold text-blue-500 m-1r py-1r px-40r">
-      Hello, React!
-    </h2>
+    <div className=''>
+      <SearchBar
+        search={()=>console.log('search')}
+        setSearchWord={(e)=>console.log(e.target.value)}
+      />
+    </div>
   );
 };
 
