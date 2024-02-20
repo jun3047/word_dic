@@ -1,8 +1,12 @@
 import React from 'react';
 import SearchBar from './components/SearchBar';
 import TitleHeader from './components/TitleHeader';
+import 유사단어표현 from './components/유사단어표현';
 
 const App = () => {
+
+  const word = '공격적인';
+
   return (
     <div className=''>
       <SearchBar
@@ -10,8 +14,11 @@ const App = () => {
         setSearchWord={(e)=>console.log(e.target.value)}
       />
       <TitleHeader 
-        word={'공격적인'}
-      /> 
+        word={word}
+        /> 
+      <유사단어표현
+        
+      />
     </div>
   );
 };
