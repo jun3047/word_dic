@@ -2,8 +2,10 @@ import DoubleDonutChart from './DoubleDonutChart';
 import CardList from './CardList';
 
 const 감정표현선택 = ({
+    word,
     isCard,
-    setIsCard
+    setIsCard,
+    setWord
 }) => {
 
     return (
@@ -21,8 +23,8 @@ const 감정표현선택 = ({
             </header>
             {
                 isCard ? 
-                <CardList /> :
-                <DoubleDonutChart />
+                <CardList setWord={setWord}/> :
+                <DoubleDonutChart word={word} setWord={setWord}/>
             }
         </div>
     )

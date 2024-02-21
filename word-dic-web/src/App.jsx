@@ -8,7 +8,7 @@ import 감정표현선택 from './components/감정표현선택';
 const App = () => {
 
 
-  const word = '공격적인';
+  const [word, setWord] = useState('분노');
 
   const [searchWord, setSearchWord] = useState('');
   const [relatedWords, setRelatedWords] = useState([]);
@@ -48,7 +48,7 @@ const App = () => {
         <SearchBar
           relatedKeywords={relatedWords}
           search={()=>console.log('search')}
-          setSearchWord={(e)=>setSearchWord(e.target.value)}
+          setSearchWord={(text)=>setSearchWord(text)}
           on={relatedWords.length > 0}
         />
         <TitleHeader 
@@ -81,6 +81,7 @@ const App = () => {
             />
         </div>
         <감정표현선택
+          setWord={(text) => setWord(text)}
           isCard={isCard}
           setIsCard={()=>setIsCard(!isCard)}
         />

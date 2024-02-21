@@ -34,11 +34,12 @@ const doughnutLabelPlugin = {
   
 Chart.register(doughnutLabelPlugin);
 
-const DoubleDonutChart = ({}) => {
+const DoubleDonutChart = ({setWord, word}) => {
   const chartRef = useRef();
   const onClick = (e) => console.log(getElementAtEvent(chartRef.current, e)[0])
 
-  const emojiName = '분노';
+  const emojiName = word;
+  // setWord는 도넛에서 등록
 
   const options = {
     responsive: true,
