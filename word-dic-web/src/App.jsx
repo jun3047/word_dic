@@ -3,6 +3,7 @@ import SearchBar from './components/SearchBar';
 import TitleHeader from './components/TitleHeader';
 import 유사단어표현 from './components/유사단어표현';
 import 활용표현문장 from './components/활용표현문장';
+import 감정표현선택 from './components/감정표현선택';
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
         setNowPageNum={()=>{}}
         word={word}
       />
+      <감정표현선택 />
     </div>
   );
 };
