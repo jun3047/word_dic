@@ -4,7 +4,7 @@ import React from 'react';
 const CardList = ({}) => {
 
     return (
-        <div className="mt-35r flex items-start flex-wrap w-full max-h-[60vh] overflow-scroll gap-10r">
+        <div className="mt-35r grid grid-cols-3 max-h-[60vh] overflow-scroll gap-10r">
             {
                 [1,2,3,4,5,6,7,8,9,10].map((v,i) => <CardItem key={i} word={'분노'} />)
             }
