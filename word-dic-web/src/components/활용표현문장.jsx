@@ -11,7 +11,7 @@ const 활용표현문장 = ({word, mean, data, lastNum, nowPageNum, setNowPageNu
     return (
         <section className="flex flex-col items-center justify-center w-full h-full px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
-                <h2 className="font-bold ml-37r headline-2">활용 표현 문장</h2>
+                <h2 className="font-bold ml-37r headline-2">활용 문장 표현</h2>
                 <div className="flex items-center justify-center w-40r h-40r">
                     <img className="w-21r h-15r" src="/svg/downArraw_active.svg" alt="alignIcon"/>
                 </div>
