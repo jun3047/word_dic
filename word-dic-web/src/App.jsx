@@ -37,6 +37,9 @@ const App = () => {
       setNowFilterList([...nowFilterList, text])
   }
 
+
+  const [on활용표현, setOn활용표현] = useState(true);
+
   return (
     <div className='flex flex-col px-120r py-48r'>
       <div className='w-full'>
@@ -62,6 +65,8 @@ const App = () => {
               modifyFilterList={modifyFilterList}
             />
             <활용표현문장
+              on활용표현={on활용표현}
+              setOn활용표현={()=>setOn활용표현(!on활용표현)}
               mean={'뜻이랍니다.'}
               data={[
                 '공격적인 사람 좀 보소',
