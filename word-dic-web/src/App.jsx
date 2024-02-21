@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import SearchBar from './components/SearchBar';
 import TitleHeader from './components/TitleHeader';
 import 유사단어표현 from './components/유사단어표현';
@@ -7,21 +7,37 @@ import 감정표현선택 from './components/감정표현선택';
 
 const App = () => {
 
+
   const word = '공격적인';
 
-  const relatedOn = false;
+  const [searchWord, setSearchWord] = useState('');
+  const [relatedWords, setRelatedWords] = useState([]);
+  
+  useEffect(()=>{
+    
+    if(searchWord === '') return setRelatedWords([])
+
+    const _relatedWords = getRelatedWord(searchWord)
+    setRelatedWords(_relatedWords)
+  },[searchWord]);
+
+  const getRelatedWord = (word) => {
+    // 해당 단어가 포함된 단어들을 가져오는 코드 작성해야 함
+    return ['공격적인', '격적인', '격렬한' ]
+  }
 
   return (
     <div className='flex flex-col px-120r py-48r'>
       <div className='w-full'>
         <SearchBar
-          on={relatedOn}
+          relatedKeywords={relatedWords}
           search={()=>console.log('search')}
-          setSearchWord={(e)=>console.log(e.target.value)}
+          setSearchWord={(e)=>setSearchWord(e.target.value)}
+          on={relatedWords.length > 0}
         />
         <TitleHeader 
           word={word}
-          on={relatedOn}
+          on={relatedWords.length > 0}
         />
       </div>
       <div className='flex w-full'>

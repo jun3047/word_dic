@@ -1,6 +1,6 @@
 import 연관검색어 from './연관검색어';
 
-const SearchBar = ({setSearchWord, search, on}) => {
+const SearchBar = ({relatedKeywords, setSearchWord, search, on}) => {
 
     return (
         <header className="flex items-center justify-center w-full h-83r">
@@ -8,6 +8,7 @@ const SearchBar = ({setSearchWord, search, on}) => {
                 <img onClick={search} className="left-0 w-19r h-19r" src="/svg/searchIcon.svg" alt="search"/>
                 <input onChange={setSearchWord} className="outline-none font-semibold text-[#444444] w-full h-full bg-inherit" type="text" placeholder="검색할 단어를 적어주세요" />
                 <연관검색어
+                    relatedKeywords={relatedKeywords}
                     on={on}
                     keyword={'공격적인'}
                 />
