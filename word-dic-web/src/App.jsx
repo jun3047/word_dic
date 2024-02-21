@@ -8,14 +8,18 @@ const App = () => {
 
   const word = '공격적인';
 
+  const relatedOn = false;
+
   return (
     <div className='px-120r py-48r'>
       <SearchBar
+        on={relatedOn}
         search={()=>console.log('search')}
         setSearchWord={(e)=>console.log(e.target.value)}
       />
       <TitleHeader 
         word={word}
+        on={relatedOn}
       />
       <유사단어표현 />
       <활용표현문장
