@@ -7,8 +7,7 @@ import 감정표현선택 from './components/감정표현선택';
 
 const App = () => {
 
-
-  const [word, setWord] = useState('분노');
+  const [word, setWord] = useState('화나다');
 
   const [searchWord, setSearchWord] = useState('');
   const [relatedWords, setRelatedWords] = useState([]);
@@ -81,6 +80,7 @@ const App = () => {
             />
         </div>
         <감정표현선택
+          word={word}
           setWord={(text) => setWord(text)}
           isCard={isCard}
           setIsCard={()=>setIsCard(!isCard)}

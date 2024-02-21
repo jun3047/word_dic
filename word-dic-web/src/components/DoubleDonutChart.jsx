@@ -34,12 +34,19 @@ const doughnutLabelPlugin = {
   
 Chart.register(doughnutLabelPlugin);
 
-const DoubleDonutChart = ({setWord, word}) => {
+const DoubleDonutChart = ({setWord, emojiName}) => {
   const chartRef = useRef();
-  const onClick = (e) => console.log(getElementAtEvent(chartRef.current, e)[0])
+  const onClick = (e) => {
 
-  const emojiName = word;
-  // setWord는 도넛에서 등록
+    const element = getElementAtEvent(chartRef.current, e)[0]
+
+    if(element?.datasetIndex === undefined) return
+
+    const {datasetIndex, index} = element
+
+    if (datasetIndex === 0) return setWord(data.datasets[datasetIndex].label[0][index])
+    setWord(data.datasets[datasetIndex].label[index])
+  }
 
   const options = {
     responsive: true,
@@ -62,11 +69,20 @@ const DoubleDonutChart = ({setWord, word}) => {
 
 // 저장된 단어 csv 파일을 읽어와서 data를 구성하도록 수정해야 함
 
-const dataLength = 56;
+const dataLength = 40;
 
 const FirstData = {
-    data: [10, 20, 30, 40, 50, 60, 70],
-    label: ['나쁜', '화난', '놀라운', '두려운', '슬픈', '행복한', '역겨운'],
+    data: [2, 5, 4, 5, 11, 4, 2, 7],
+    label: [
+        '화나다',
+        '감동하다',
+        '행복하다',
+        '편안하다',
+        '슬프다',
+        '무섭다',
+        '지루하다',
+        '싫다',
+    ],
     backgroundColor: [
         'rgba(233, 76, 94, 1)',
         'rgba(241, 138, 0, 1)',
@@ -75,6 +91,7 @@ const FirstData = {
         'rgba(174, 234, 244, 1)',
         'rgba(198, 154, 204, 1)',
         'rgba(200, 200, 200, 1)',
+        '#b1b1b1',
     ],
     borderWidth: 2,
     hoverBorderColor: [
@@ -85,6 +102,7 @@ const FirstData = {
         'rgba(13, 139, 169, 1)',
         'rgba(77, 77, 169, 1)',
         'rgba(131, 131, 131, 1)',
+        '#5f5f5f'
     ],
     subHoverColor: [
         'rgba(233, 76, 94, 1)',
@@ -94,6 +112,7 @@ const FirstData = {
         'rgba(174, 234, 244, 1)',
         'rgba(198, 154, 204, 1)',
         'rgba(200, 200, 200, 1)',
+        '#b1b1b1',
     ],
     subColor: [
         'rgba(248, 201, 206, 1)',
@@ -103,20 +122,69 @@ const FirstData = {
         'rgba(207, 231, 235, 1)',
         'rgba(226, 205, 229, 1)',
         'rgba(230, 229, 229, 1)',
+        '#d4d4d4',
     ]
 }
 
 const SecondData = {
-    data: Array.from({ length: dataLength }, () => 5),
-    label: Array.from({ length: dataLength }, () => 'word'),
+    data: Array.from({ length: dataLength }, () => 1),
+    label: Array.from({ length: dataLength }, () => [
+        '증오하다',
+        '화나다',
+
+        '감동하다',
+        '부럽다',
+        '반하다',
+        '선호하다',
+        '애틋하다',
+
+        '기쁘다',
+        '신나다',
+        '좋다',
+        '행복하다',
+
+        '안정되다',
+        '편안하다',
+        '만족하다',
+        '공감하다',
+        '후련하다',
+
+        '미안하다',
+        '눈물겹다',
+        '서운하다',
+        '억울하다',
+        '슬프다',
+        '외롭다',
+        '우울하다',
+        '아쉽다',
+        '실망하다',
+        '후회하다',
+        '그립다',
+
+        '놀라다',
+        '무섭다',
+        '불쾌하다',
+        '조마조마하다',
+
+        '심심하다',
+        '지루하다',
+
+        '우습다',
+        '부끄럽다',
+        '불편하다',
+        '괴롭다',
+        '귀찮다',
+        '싫다',
+        '짜증내다',
+    ]),
     backgroundColor: [
         ...FirstData.data.flatMap((size, i) => 
-            Array.from({ length: size/5 }, () => FirstData.subColor[i])
+            Array.from({ length: size }, () => FirstData.subColor[i])
         ),
     ],
     hoverBackgroundColor: [
         ...FirstData.data.flatMap((size, i) => 
-            Array.from({ length: size/5 }, () => FirstData.subHoverColor[i])
+            Array.from({ length: size }, () => FirstData.subHoverColor[i])
         ),
     ],
 }

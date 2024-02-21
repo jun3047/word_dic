@@ -24,7 +24,7 @@ const 감정표현선택 = ({
             {
                 isCard ? 
                 <CardList setWord={setWord}/> :
-                <DoubleDonutChart word={word} setWord={setWord}/>
+                <DoubleDonutChart emojiName={word} setWord={setWord}/>
             }
         </div>
     )
