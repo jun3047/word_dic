@@ -15,7 +15,7 @@ const CardList = ({}) => {
 const CardItem = ({word}) => {
 
     return (
-        <article className='flex flex-col gap-10r justify-center items-center bg-white border-2 rounded-xl w-160r h-200r border-[#EDEDED]'>
+        <article className='flex hover:bg-[#E9E9E9] flex-col gap-10r justify-center items-center bg-white border-2 rounded-xl w-160r h-200r border-[#EDEDED]'>
             <img src={`/emoji/${word}.png`} alt={`${word}`} className='w-130r h-130r'/>
             <p className='font-semibold subTitle-1'>{word}</p>
         </article>
