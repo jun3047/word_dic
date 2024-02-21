@@ -40,6 +40,8 @@ const App = () => {
 
   const [on활용표현, setOn활용표현] = useState(true);
 
+  const [isCard, setIsCard] = useState(false);
+
   return (
     <div className='flex flex-col px-120r py-48r'>
       <div className='w-full'>
@@ -78,7 +80,10 @@ const App = () => {
               word={word}
             />
         </div>
-        <감정표현선택 />
+        <감정표현선택
+          isCard={isCard}
+          setIsCard={()=>setIsCard(!isCard)}
+        />
       </div>
     </div>
   );
