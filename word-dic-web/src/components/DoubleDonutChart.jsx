@@ -48,7 +48,7 @@ const DoubleDonutChart = ({}) => {
   };
 
   return (
-    <div className="relative flex items-center justify-center w-590r h-590r min-w-518r min-h-518r">
+    <div className="relative flex items-center justify-center w-full h-full max-w-590r max-h-590r">
     <img
         className="absolute w-140r h-140r"
         src={`/emoji/${emojiName}.png`}

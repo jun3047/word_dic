@@ -9,7 +9,7 @@ const 활용표현문장 = ({word, mean, data, lastNum, nowPageNum, setNowPageNu
 
 
     return (
-        <section className="px-40r flex flex-col items-center justify-center w-[50%] h-[100%] min-w-600r">
+        <section className="flex flex-col items-center justify-center w-full h-full px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
                 <h2 className="font-bold ml-37r headline-2">활용 표현 문장</h2>
                 <div className="flex items-center justify-center w-40r h-40r">
