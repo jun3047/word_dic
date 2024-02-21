@@ -1,7 +1,7 @@
 const PopUp = ({on, nowAlign, setNowAlign}) => {
 
     return (
-      <div className={`absolute flex flex-col m-0 bg-white rounded-md shadow-md top-70r left-450r w-105r py-10r ${on || 'hidden'}`}>
+      <div className={`absolute flex flex-col m-0 bg-white rounded-md shadow-md top-50r right-0r w-105r py-10r ${on || 'hidden'}`}>
         {
           ['글자순', '대중성', '강도'].map((text, i) =>{
 

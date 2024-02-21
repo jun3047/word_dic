@@ -13,17 +13,17 @@ const 유사단어표현 = (
     }) => {
         
     return (
-        <main className="relative flex flex-col items-center justify-center w-full h-full px-40r">
+        <main className="flex flex-col items-center justify-center w-full h-full px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
                 <h2 className="font-bold ml-37r headline-2">유사단어 표현</h2>
-                <div onClick={changePopup} className={`flex items-center justify-center w-40r h-40r rounded-full ${onPopup && 'bg-[#F1F1F1]'}`}>
+                <div onClick={changePopup} className={`flex relative items-center justify-center w-40r h-40r rounded-full ${onPopup && 'bg-[#F1F1F1]'}`}>
                     <img className="w-20r h-17r" src="/svg/alignIcon.svg" alt="alignIcon"/>
+                    <PopUp
+                        nowAlign={nowAlign}
+                        setNowAlign={setNowAlign}
+                        on={onPopup}
+                    />
                 </div>
-                <PopUp
-                    nowAlign={nowAlign}
-                    setNowAlign={setNowAlign}
-                    on={onPopup}
-                />
             </header>
             <hr className="w-full h-1r bg-[#E5E5E5]"/>
             <fieldset className="flex items-start w-full gap-24r my-17r px-14r">
