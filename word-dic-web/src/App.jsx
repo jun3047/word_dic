@@ -4,13 +4,28 @@ import TitleHeader from './components/TitleHeader';
 import 유사단어표현 from './components/유사단어표현';
 import 활용표현문장 from './components/활용표현문장';
 import 감정표현선택 from './components/감정표현선택';
+import 기본표현 from './data/기본표현.json';
 
 const App = () => {
 
-  const [word, setWord] = useState('화나다');
+  const getWordData = (word) => 기본표현[word][0]
+  const get유사단어List = (word) => 기본표현[word]
 
+  const initWord = '놀라다';
+  const initWordData = getWordData(initWord);
+
+  const [word, setWord] = useState('놀라다');
+  const [wordData, setWordData] = useState(initWordData);
   const [searchWord, setSearchWord] = useState('');
   const [relatedWords, setRelatedWords] = useState([]);
+  
+  useEffect(()=>{
+
+    const _wordData = getWordData(word)
+    setWordData(_wordData)
+
+  }, [word])
+    
 
   useEffect(()=>{
     
@@ -58,6 +73,7 @@ const App = () => {
       <div className='flex w-full'>
         <div className='flex flex-col w-1/2 h-full'>
             <유사단어표현
+              유사표현List={get유사단어List(word)}
               nowAlign={nowAlign}
               setNowAlign={setNowAlign}
               onPopup={onPopup}
@@ -68,11 +84,8 @@ const App = () => {
             <활용표현문장
               on활용표현={on활용표현}
               setOn활용표현={()=>setOn활용표현(!on활용표현)}
-              mean={'뜻이랍니다.'}
-              data={[
-                '공격적인 사람 좀 보소',
-                '너무 공격적인 표현은 좀 자제해야겠어',
-              ]}
+              mean={wordData['뜻']}
+              data={wordData['예문']}
               lastNum={4}
               nowPageNum={1}
               setNowPageNum={()=>{}}

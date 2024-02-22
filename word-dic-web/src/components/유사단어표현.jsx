@@ -1,6 +1,7 @@
 import PagiNation from "./PagiNation"
 import WordBox from "./WordBox"
 import PopUp from './PopUp';
+import { useEffect, useState } from "react";
 
 const 유사단어표현 = (
     {
@@ -9,9 +10,37 @@ const 유사단어표현 = (
         nowFilterList,
         modifyFilterList,
         nowAlign,
-        setNowAlign
+        setNowAlign,
+        유사표현List
     }) => {
-        
+
+    const sortKoreanWordsList = (words) => {
+        return words.sort((a, b) => a.text.localeCompare(b.text, 'ko'));
+    }
+
+    const aligned유사표현List = (alignType, _유사표현List) => {
+        if(alignType === '글자순') return sortKoreanWordsList(_유사표현List)
+        return 유사표현List.sort((a, b) => a[alignType] - b[alignType])
+    }
+
+    const filtered유사표현List = (filterList, _유사표현List) => {
+        return _유사표현List.filter((word) => filterList.includes(word.type))
+    }
+
+    const sorted유사표현 = (alignType, filterList, _유사표현List) => {
+
+        const _aligned유사표현List = aligned유사표현List(alignType, _유사표현List)
+        const _filtered유사표현List = filtered유사표현List(filterList, _aligned유사표현List)
+
+        return _filtered유사표현List
+    }
+
+    const [_유사표현List, _set유사표현List] = useState(sorted유사표현(nowAlign, nowFilterList, 유사표현List))
+
+    useEffect(()=>{
+        _set유사표현List(sorted유사표현(nowAlign, nowFilterList, 유사표현List))
+    },[nowAlign, nowFilterList])
+
     return (
         <main className="flex flex-col items-center justify-center w-full h-full px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
@@ -36,13 +65,8 @@ const 유사단어표현 = (
             <hr className="w-full h-1r bg-[#E5E5E5]"/>
             <section className="flex flex-wrap w-full my-18r mx-48r gap-8r">
                 {
-                    [
-                        '단어', '다다다다다언',
-                        '단어', '다다다언',
-                        '단어', '다다다ddd다다언',
-                        '단어', '다다다다언',
-                    ].map((word, i) =>
-                        <WordBox key={i} word={word} color={'yellow'} />
+                    _유사표현List.map((word, i) =>
+                        <WordBox key={i} word={word.text} color={'yellow'} />
                     )
                 }   
             </section>
