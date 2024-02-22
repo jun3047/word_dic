@@ -38,8 +38,7 @@ const App = () => {
 
 
   const [on활용표현, setOn활용표현] = useState(true);
-
-  const [isCard, setIsCard] = useState(false);
+  const [isCard, setIsCard] = useState(true);
 
   return (
     <div className='flex flex-col px-120r py-48r'>
