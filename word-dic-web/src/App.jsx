@@ -22,7 +22,7 @@ const App = () => {
 
   const getRelatedWord = (word) => {
     // 해당 단어가 포함된 단어들을 가져오는 코드 작성해야 함
-    return ['공격적인', '격적인', '격렬한' ]
+    return ['행복하다', '싫다' ]
   }
 
   const [onPopup, setOnPopup] = useState(false);
@@ -45,8 +45,9 @@ const App = () => {
     <div className='flex flex-col px-120r py-48r'>
       <div className='w-full'>
         <SearchBar
+          setRelatedWords={setRelatedWords}
           relatedKeywords={relatedWords}
-          search={()=>console.log('search')}
+          search={(text)=>setWord(text)}
           setSearchWord={(text)=>setSearchWord(text)}
           on={relatedWords.length > 0}
         />
