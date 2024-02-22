@@ -8,13 +8,20 @@ import 기본표현 from './data/기본표현.json';
 
 const App = () => {
 
-  const getWordData = (word) => 기본표현[word][0]
-  const get유사단어List = (word) => 기본표현[word]
+  const getWordData = (word) => {
+    if(!기본표현[word]) return
+    return 기본표현[word][0]
+  }
 
-  const initWord = '놀라다';
+  const get유사단어List = (word) => {
+    if(!기본표현[word]) return
+    return 기본표현[word]
+  }
+
+  const initWord = '화나다';
   const initWordData = getWordData(initWord);
 
-  const [word, setWord] = useState('놀라다');
+  const [word, setWord] = useState(initWord);
   const [wordData, setWordData] = useState(initWordData);
   const [searchWord, setSearchWord] = useState('');
   const [relatedWords, setRelatedWords] = useState([]);
@@ -28,10 +35,10 @@ const App = () => {
   useEffect(()=>{
 
     const _유사표현List = get유사단어List(word)
-    set유사표현List(_유사표현List);
+    if (_유사표현List) set유사표현List(_유사표현List);
     
     const _wordData = getWordData(word)
-    setWordData(_wordData)
+    if (_wordData) setWordData(_wordData)
 
   }, [word])
     
