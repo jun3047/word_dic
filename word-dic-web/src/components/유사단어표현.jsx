@@ -11,7 +11,7 @@ const 유사단어표현 = (
         modifyFilterList,
         nowAlign,
         setNowAlign,
-        유사표현List
+        유사표현List,
     }) => {
 
     const sortKoreanWordsList = (words) => {
@@ -38,8 +38,9 @@ const 유사단어표현 = (
     const [_유사표현List, _set유사표현List] = useState(sorted유사표현(nowAlign, nowFilterList, 유사표현List))
 
     useEffect(()=>{
-        _set유사표현List(sorted유사표현(nowAlign, nowFilterList, 유사표현List))
-    },[nowAlign, nowFilterList])
+        const _sorted유사표현 = sorted유사표현(nowAlign, nowFilterList, 유사표현List)
+        _set유사표현List(_sorted유사표현)
+    },[nowAlign, nowFilterList, 유사표현List])
 
     return (
         <main className="flex flex-col items-center justify-center w-full h-full px-40r">
@@ -66,7 +67,7 @@ const 유사단어표현 = (
             <section className="flex flex-wrap w-full my-18r mx-48r gap-8r">
                 {
                     _유사표현List.map((word, i) =>
-                        <WordBox key={i} word={word.text} color={'yellow'} />
+                        <WordBox active={false} key={i} word={word.text} 소속={word['소속']} />
                     )
                 }   
             </section>

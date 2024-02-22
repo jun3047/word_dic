@@ -11,6 +11,7 @@ const 활용표현문장 = (
         setNowPageNum,
         on활용표현,
         setOn활용표현,
+        소속
     }) => {
 
 
@@ -41,7 +42,7 @@ const 활용표현문장 = (
                                     <span className="font-semibold text-[#434343] w-40r">{i+1}.</span>
                                     <p className="flex items-center gap-6r">
                                     {text[0]}
-                                    <WordBox word={word} color={'yellow'} />
+                                    <WordBox active={true} word={word} 소속={소속} />
                                     {text[1]}
                                     </p>
                                 </p>

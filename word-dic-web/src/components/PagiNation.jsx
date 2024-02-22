@@ -5,8 +5,6 @@ const PagiNation = ({lastNum, nowPageNum, setNowPageNum}) => {
     const isFirst = nowPageNum === 1;
     const isLast = nowPageNum === lastNum;
 
-    console.log(isFirst, isLast)
-
     return (
         <nav className="flex gap-20r my-12r">
             <img className={`${isFirst ? 'opacity-0' : 'opacity-100'} `}

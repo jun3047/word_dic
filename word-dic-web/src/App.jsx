@@ -18,9 +18,18 @@ const App = () => {
   const [wordData, setWordData] = useState(initWordData);
   const [searchWord, setSearchWord] = useState('');
   const [relatedWords, setRelatedWords] = useState([]);
-  
+  const [유사표현List, set유사표현List] = useState([]);
+
+  const [onPopup, setOnPopup] = useState(false);
+
+  const [nowAlign, setNowAlign] = useState('대중성');
+  const [nowFilterList, setNowFilterList] = useState(['기본표현']);
+
   useEffect(()=>{
 
+    const _유사표현List = get유사단어List(word)
+    set유사표현List(_유사표현List);
+    
     const _wordData = getWordData(word)
     setWordData(_wordData)
 
@@ -39,11 +48,6 @@ const App = () => {
     // 해당 단어가 포함된 단어들을 가져오는 코드 작성해야 함
     return ['행복하다', '싫다' ]
   }
-
-  const [onPopup, setOnPopup] = useState(false);
-
-  const [nowAlign, setNowAlign] = useState('대중성');
-  const [nowFilterList, setNowFilterList] = useState(['기본표현']);
 
   const modifyFilterList = (text) => {
     nowFilterList.includes(text) ?
@@ -73,7 +77,8 @@ const App = () => {
       <div className='flex w-full'>
         <div className='flex flex-col w-1/2 h-full'>
             <유사단어표현
-              유사표현List={get유사단어List(word)}
+              유사표현List={유사표현List}
+              word={word}
               nowAlign={nowAlign}
               setNowAlign={setNowAlign}
               onPopup={onPopup}
@@ -82,6 +87,7 @@ const App = () => {
               modifyFilterList={modifyFilterList}
             />
             <활용표현문장
+              소속={wordData['소속']}
               on활용표현={on활용표현}
               setOn활용표현={()=>setOn활용표현(!on활용표현)}
               mean={wordData['뜻']}
