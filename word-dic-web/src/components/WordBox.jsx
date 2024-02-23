@@ -31,10 +31,10 @@ const WordBox = ({word, 소속, active, setWord = () => {}}) => {
         textColorClass = `text-green-main-color`
       break;
       case '슬프다':
-        borderColorClass = `border-blue-main-color`
-        bgColorClass = `bg-blue-main-color`
-        hoverBgColorClass = `hover:bg-blue-main-color`
-        textColorClass = `text-blue-main-color`
+        borderColorClass = `border-skyblue-main-color`
+        bgColorClass = `bg-skyblue-main-color`
+        hoverBgColorClass = `hover:bg-skyblue-main-color`
+        textColorClass = `text-skyblue-main-color`
       break;
       case '무섭다':
         borderColorClass = `border-purple-main-color`
@@ -43,10 +43,10 @@ const WordBox = ({word, 소속, active, setWord = () => {}}) => {
         textColorClass = `text-purple-main-color`
       break;
       case '지루하다':
-        borderColorClass = `border-grey-main-color`
-        bgColorClass = `bg-grey-main-color`
-        hoverBgColorClass = `hover:bg-grey-main-color`
-        textColorClass = `text-grey-main-color`
+        borderColorClass = `border-blue-main-color`
+        bgColorClass = `bg-blue-main-color`
+        hoverBgColorClass = `hover:bg-blue-main-color`
+        textColorClass = `text-blue-main-color`
       break;
       case '싫다':
         borderColorClass = `border-grey-main-color`
