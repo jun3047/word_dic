@@ -58,8 +58,14 @@ const App = () => {
   },[searchWord]);
 
   const getRelatedWord = (word) => {
-    // 해당 단어가 포함된 단어들을 가져오는 코드 작성해야 함
-    return ['행복하다', '싫다' ]
+    for (const key in 기본표현) {
+      const list = 기본표현[key];
+      // 배열 내의 각 객체를 순회
+      const found = list.filter((item) => item.text.includes(word));
+
+      if (found) return found.map((item)=> item.text).slice(0, 5); // 일치하는 객체를 찾으면 반환
+    }
+    return ;
   }
 
   const modifyFilterList = (text) => {
