@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 const 유사단어표현 = (
     {
+        word,
+        setWord,
         onPopup,
         changePopup,
         nowFilterList,
@@ -24,7 +26,11 @@ const 유사단어표현 = (
     }
 
     const filtered유사표현List = (filterList, _유사표현List) => {
-        return _유사표현List.filter((word) => filterList.includes(word.type))
+
+        const __유사표현List = _유사표현List.filter((word) => filterList.includes(word.type))
+
+        if(filterList.includes('제외필터')) return __유사표현List.filter((word) => word['대중성'] > 200)
+        else return __유사표현List
     }
 
     const sorted유사표현 = (alignType, filterList, _유사표현List) => {
@@ -66,8 +72,8 @@ const 유사단어표현 = (
             <hr className="w-full h-1r bg-[#E5E5E5]"/>
             <section className="flex flex-wrap w-full my-18r mx-48r gap-8r">
                 {
-                    _유사표현List.map((word, i) =>
-                        <WordBox active={false} key={i} word={word.text} 소속={word['소속']} />
+                    _유사표현List.map((_word, i) =>
+                        <WordBox active={word === _word.text} setWord={(text)=>setWord(text)} key={i} word={_word.text} 소속={_word['소속']} />
                     )
                 }   
             </section>

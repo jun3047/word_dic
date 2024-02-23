@@ -2,11 +2,16 @@ import DoubleDonutChart from './DoubleDonutChart';
 import CardList from './CardList';
 
 const 감정표현선택 = ({
+    wordData,
     word,
     isCard,
     setIsCard,
     setWord
 }) => {
+
+    console.log(wordData['img'])
+    console.log(word)
+    console.log(wordData["소속"])
 
     return (
         <div className="relative flex flex-col items-center justify-center w-1/2 h-full px-40r">
@@ -23,7 +28,7 @@ const 감정표현선택 = ({
             </header>
             {
                 isCard ? 
-                <DoubleDonutChart emojiName={word} setWord={setWord}/>:
+                <DoubleDonutChart emojiName={wordData['img'] ? word : wordData["소속"]} setWord={setWord}/>:
                 <CardList setWord={setWord}/>
             }
         </div>

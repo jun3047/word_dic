@@ -7,10 +7,16 @@ import 감정표현선택 from './components/감정표현선택';
 import 기본표현 from './data/기본표현.json';
 
 const App = () => {
-
+  
   const getWordData = (word) => {
-    if(!기본표현[word]) return
-    return 기본표현[word][0]
+
+    for (const key in 기본표현) {
+      const list = 기본표현[key];
+      // 배열 내의 각 객체를 순회
+      const found = list.find((item) => item.text === word);
+      if (found) return found; // 일치하는 객체를 찾으면 반환
+    }
+    return null;
   }
 
   const get유사단어List = (word) => {
@@ -84,6 +90,7 @@ const App = () => {
       <div className='flex w-full'>
         <div className='flex flex-col w-1/2 h-full'>
             <유사단어표현
+              setWord={(text) => setWord(text)}
               유사표현List={유사표현List}
               word={word}
               nowAlign={nowAlign}
@@ -106,6 +113,7 @@ const App = () => {
             />
         </div>
         <감정표현선택
+          wordData={wordData}
           word={word}
           setWord={(text) => setWord(text)}
           isCard={isCard}

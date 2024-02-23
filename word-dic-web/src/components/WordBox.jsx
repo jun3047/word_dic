@@ -1,4 +1,4 @@
-const WordBox = ({word, 소속, active}) => {
+const WordBox = ({word, 소속, active, setWord = () => {}}) => {
 
     let bgColorClass;
     let borderColorClass;
@@ -66,7 +66,7 @@ const WordBox = ({word, 소속, active}) => {
     bgColorClass = active ? bgColorClass : `bg-white ${hoverBgColorClass}`;
     
     return (
-        <div class={`${borderColorClass} ${bgColorClass} border-2 rounded-xl inline-flex items-center justify-center h-36r px-19r py-7r group`}>
+        <div onClick={()=>setWord(word)} class={`${borderColorClass} ${bgColorClass} border-2 rounded-xl inline-flex items-center justify-center h-36r px-19r py-7r group`}>
             <p className={`${textColorClass} body-text font-bold group-hover:text-white`}>{word}</p>
         </div>
     )

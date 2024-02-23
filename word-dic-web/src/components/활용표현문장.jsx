@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import PagiNation from "./PagiNation"
 import WordBox from "./WordBox"
 
@@ -19,6 +20,10 @@ const 활용표현문장 = (
         return text.split(word);
     })
 
+    useEffect(()=>{
+        console.log('-mean', mean)
+        console.log('-word', word)
+    },[mean, word ]);
 
     return (
         <section className="flex flex-col items-center justify-center w-full h-full px-40r">
@@ -34,7 +39,8 @@ const 활용표현문장 = (
                 (<>
                 <div className="flex flex-col justify-start w-full px-8r">
                     <p className="body-text text-[#636363] h-54r w-full flex items-center">
-                        <span className="font-semibold text-[#434343] mr-4r">[뜻]</span> {mean}
+                        <span className="font-semibold text-[#434343] mr-4r">[뜻]</span>
+                        {mean}
                     </p>
                     {
                         initWordData.map((text, i) => (
