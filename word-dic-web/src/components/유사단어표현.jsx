@@ -3,6 +3,9 @@ import WordBox from "./WordBox"
 import PopUp from './PopUp';
 import { useEffect, useState } from "react";
 
+
+const PAGE_SIZE = 4; // 페이지당 표시할 항목의 수
+
 const 유사단어표현 = (
     {
         word,
@@ -43,10 +46,26 @@ const 유사단어표현 = (
 
     const [_유사표현List, _set유사표현List] = useState(sorted유사표현(nowAlign, nowFilterList, 유사표현List))
 
+
     useEffect(()=>{
         const _sorted유사표현 = sorted유사표현(nowAlign, nowFilterList, 유사표현List)
         _set유사표현List(_sorted유사표현)
+
+        setPage(1);
+        
     },[nowAlign, nowFilterList, 유사표현List])
+
+    const [page, setPage] = useState(1); // 현재 페이지 번호
+    const [paginatedList, setPaginatedList] = useState([]); // 현재 페이지에 해당하는 리스트
+  
+    // 페이지 변경이나 유사표현List 변경 시 분할 리스트 업데이트
+    useEffect(() => {
+      const start = (page - 1) * PAGE_SIZE;
+      const end = start + PAGE_SIZE;
+
+      setPaginatedList(_유사표현List.slice(start, end));
+
+    }, [_유사표현List, page]);
 
     return (
         <main className="flex flex-col items-center justify-center w-full h-full px-40r">
@@ -72,15 +91,15 @@ const 유사단어표현 = (
             <hr className="w-full h-1r bg-[#E5E5E5]"/>
             <section className="flex flex-wrap w-full my-18r mx-48r gap-8r">
                 {
-                    _유사표현List.map((_word, i) =>
+                    paginatedList.map((_word, i) =>
                         <WordBox active={word === _word.text} setWord={(text)=>setWord(text)} key={i} word={_word.text} 소속={_word['소속']} />
                     )
                 }   
             </section>
             <PagiNation
-                lastNum={4}
-                nowPageNum={4}
-                setNowPageNum={() => {}}
+                lastNum={Math.ceil(_유사표현List.length / PAGE_SIZE)}
+                nowPageNum={page}
+                setNowPageNum={setPage}
             />
         </main>
     )

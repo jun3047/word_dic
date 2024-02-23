@@ -106,9 +106,6 @@ const App = () => {
               setOn활용표현={()=>setOn활용표현(!on활용표현)}
               mean={wordData['뜻']}
               data={wordData['예문']}
-              lastNum={4}
-              nowPageNum={1}
-              setNowPageNum={()=>{}}
               word={word}
             />
         </div>

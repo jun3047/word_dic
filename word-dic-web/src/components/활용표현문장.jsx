@@ -1,29 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PagiNation from "./PagiNation"
 import WordBox from "./WordBox"
+
+const PAGE_SIZE = 2; // 페이지당 표시할 항목의 수
 
 const 활용표현문장 = (
     {
         word,
         mean,
         data,
-        lastNum,
-        nowPageNum,
-        setNowPageNum,
         on활용표현,
         setOn활용표현,
         소속
     }) => {
 
+    const [page, setPage] = useState(1); // 현재 페이지 번호
+    const [paginatedList, setPaginatedList] = useState([]); // 현재 페이지에 해당하는 리스트
+  
+    // 페이지 변경이나 유사표현List 변경 시 분할 리스트 업데이트
 
-    const initWordData = data.slice((nowPageNum-1)*2, nowPageNum*2).map((text, i) => {
-        return text.split(word);
-    })
+    useEffect(() => {
+        setPage(1);
+    }, [word]);
 
-    useEffect(()=>{
-        console.log('-mean', mean)
-        console.log('-word', word)
-    },[mean, word ]);
+    useEffect(() => {
+        const start = (page - 1) * PAGE_SIZE;
+        const end = start + PAGE_SIZE;
+
+        const _data = data.slice(start, end).map((text, i) => {
+            return text.split(word);
+        });
+
+        console.log('setPaginatedList(_data):', _data)
+        console.log('data:', data)
+
+        setPaginatedList(_data);
+
+    }, [data, page]);
+
 
     return (
         <section className="flex flex-col items-center justify-center w-full h-full px-40r">
@@ -43,9 +57,9 @@ const 활용표현문장 = (
                         {mean}
                     </p>
                     {
-                        initWordData.map((text, i) => (
+                        paginatedList.map((text, i) => (
                                 <p key={i} className="body-text text-[#636363] h-54r w-full flex items-center">
-                                    <span className="font-semibold text-[#434343] w-40r">{i+1}.</span>
+                                    <span className="font-semibold text-[#434343] w-40r">{i+1+(page-1)*2}.</span>
                                     <p className="flex items-center gap-6r">
                                     {text[0]}
                                     <WordBox active={true} word={word} 소속={소속} />
@@ -57,9 +71,9 @@ const 활용표현문장 = (
                     }
                 </div>
                 <PagiNation
-                    lastNum={lastNum}
-                    nowPageNum={4}
-                    setNowPageNum={setNowPageNum}
+                    nowPageNum={page}
+                    setNowPageNum={setPage}
+                    lastNum={Math.ceil(data.length / PAGE_SIZE)}
                 />
                 </>)
                 :
