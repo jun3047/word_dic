@@ -58,14 +58,22 @@ const App = () => {
   },[searchWord]);
 
   const getRelatedWord = (word) => {
+
+    let relatedWords = [];
+
     for (const key in 기본표현) {
       const list = 기본표현[key];
-      // 배열 내의 각 객체를 순회
-      const found = list.filter((item) => item.text.includes(word));
 
-      if (found) return found.map((item)=> item.text).slice(0, 5); // 일치하는 객체를 찾으면 반환
+      const found = list.filter(item => item.text.includes(word));
+
+      if (found.length > 0) {
+        relatedWords = relatedWords.concat(found.map(item => item.text));
+      }
     }
-    return ;
+
+    relatedWords = [...new Set(relatedWords)].slice(0, 5);
+
+    return relatedWords;
   }
 
   const modifyFilterList = (text) => {
