@@ -60,21 +60,21 @@ const emotionList = [
     '짜증내다',
 ]
 
-const CardList = ({setWord}) => {
+const CardList = ({setWord, word}) => {
 
     return (
         <div className="mt-35r grid grid-cols-3 max-h-[60vh] overflow-scroll gap-10r">
             {
-                emotionList.map((text,i) => <CardItem setWord={setWord} key={i} word={text} />)
+                emotionList.map((text,i) => <CardItem active={word === text} setWord={setWord} key={i} word={text} />)
             }
         </div>
     )
 };
 
-const CardItem = ({word, setWord}) => {
+const CardItem = ({word, setWord, active}) => {
 
     return (
-        <article onClick={()=>setWord(word)} className='flex hover:bg-[#E9E9E9] flex-col gap-10r justify-center items-center bg-white border-2 rounded-xl w-160r h-200r border-[#EDEDED]'>
+        <article onClick={()=>setWord(word)} className={`flex ${active ? "bg-[#E9E9E9]" : 'bg-white'} hover:bg-[#E9E9E9] flex-col gap-10r justify-center items-center border-2 rounded-xl w-160r h-200r border-[#EDEDED]`}>
             <img src={`/emoji/${word}.png`} alt={`${word}`} className='w-130r h-130r'/>
             <p className='font-semibold subTitle-1'>{word}</p>
         </article>

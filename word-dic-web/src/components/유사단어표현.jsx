@@ -4,7 +4,7 @@ import PopUp from './PopUp';
 import { useEffect, useState } from "react";
 
 
-const PAGE_SIZE = 4; // 페이지당 표시할 항목의 수
+const PAGE_SIZE = 10; // 페이지당 표시할 항목의 수
 
 const 유사단어표현 = (
     {

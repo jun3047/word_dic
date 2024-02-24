@@ -28,8 +28,8 @@ const 감정표현선택 = ({
             </header>
             {
                 isCard ? 
-                <DoubleDonutChart emojiName={wordData['img']} setWord={setWord}/>:
-                <CardList setWord={setWord}/>
+                <DoubleDonutChart activeWord={word} emojiName={wordData['img']} setWord={setWord}/>:
+                <CardList word={word} setWord={setWord}/>
             }
         </div>
     )
