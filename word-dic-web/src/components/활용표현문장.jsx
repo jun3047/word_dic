@@ -52,10 +52,14 @@ const 활용표현문장 = (
                 on활용표현 ? 
                 (<>
                 <div className="flex flex-col justify-start w-full px-8r">
-                    <p className="body-text text-[#636363] h-54r w-full flex items-center">
-                        <span className="font-semibold text-[#434343] mr-4r">[뜻]</span>
-                        {mean}
-                    </p>
+                    {
+                        mean !== undefined && (
+                            <p className="body-text text-[#636363] h-54r w-full flex items-center">
+                                <span className="font-semibold text-[#434343] mr-4r">[뜻]</span>
+                                {mean}
+                            </p>
+                        )
+                    }
                     {
                         paginatedList.map((text, i) => (
                                 <p key={i} className="body-text text-[#636363] h-54r w-full flex items-center">
