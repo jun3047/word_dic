@@ -9,6 +9,7 @@ const 활용표현문장 = (
         word,
         mean,
         data,
+        dataText,
         on활용표현,
         setOn활용표현,
         소속
@@ -28,11 +29,9 @@ const 활용표현문장 = (
         const end = start + PAGE_SIZE;
 
         const _data = data.slice(start, end).map((text, i) => {
-            return text.split(word);
-        });
-
-        console.log('setPaginatedList(_data):', _data)
-        console.log('data:', data)
+            const parts = text.split(dataText[i]);
+            return [parts[0], dataText[i], parts[1]];
+        });        
 
         setPaginatedList(_data);
 
@@ -66,8 +65,8 @@ const 활용표현문장 = (
                                     <span className="font-semibold text-[#434343] w-40r">{i+1+(page-1)*2}.</span>
                                     <p className="flex items-center gap-6r">
                                     {text[0]}
-                                    <WordBox active={true} word={word} 소속={소속} />
-                                    {text[1]}
+                                    <WordBox active={true} word={text[1]} 소속={소속} />
+                                    {text[2]}
                                     </p>
                                 </p>
                             )
