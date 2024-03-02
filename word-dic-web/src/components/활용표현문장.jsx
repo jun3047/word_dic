@@ -29,8 +29,10 @@ const 활용표현문장 = (
         const end = start + PAGE_SIZE;
 
         const _data = data.slice(start, end).map((text, i) => {
-            const parts = text.split(dataText[i]);
-            return [parts[0], dataText[i], parts[1]];
+
+            const _dataText = dataText[i + start]
+            const parts = text.split(_dataText);
+            return [parts[0], _dataText, parts[1]];
         });        
 
         setPaginatedList(_data);
