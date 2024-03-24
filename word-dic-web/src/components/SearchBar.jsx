@@ -17,7 +17,6 @@ const SearchBar = ({relatedKeywords, setSearchWord, on, search}) => {
 
         if(e.key === 'Enter') {
             inputRef.current.blur();
-            // input의 value를 relatedKeywords[nowWordIndex]로 설정
             inputRef.current.value = relatedKeywords[nowWordIndex]
 
             return search(relatedKeywords[nowWordIndex])
