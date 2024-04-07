@@ -5,8 +5,13 @@ import 유사단어표현 from './components/유사단어표현';
 import 활용표현문장 from './components/활용표현문장';
 import 감정표현선택 from './components/감정표현선택';
 import 기본표현 from './data/기본표현.json';
+import { trackEvent } from './logging/amplitude';
 
 const App = () => {
+
+  useEffect(()=>{
+    trackEvent('test: word-dic-web 1');
+  }, [])
   
   const getWordData = (word) => {
 
