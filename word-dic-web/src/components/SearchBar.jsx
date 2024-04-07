@@ -1,7 +1,8 @@
+import { trackEvent } from '../logging/amplitude';
 import 연관검색어 from './연관검색어';
 import { useState, useEffect, useRef } from 'react';
 
-const SearchBar = ({relatedKeywords, setSearchWord, on, search}) => {
+const SearchBar = ({relatedKeywords, setSearchWord, searchWord, on, search}) => {
 
 
     const [activeWord, setActiveWord] = useState(relatedKeywords[0])
@@ -19,10 +20,18 @@ const SearchBar = ({relatedKeywords, setSearchWord, on, search}) => {
             inputRef.current.blur();
             inputRef.current.value = relatedKeywords[nowWordIndex]
 
-            return search(relatedKeywords[nowWordIndex])
+            const nextSearchWord = relatedKeywords[nowWordIndex]
+            search(nextSearchWord)
+            trackEvent(`type_검색-${nextSearchWord}`)
         }
-        if(e.key === 'ArrowDown') return setActiveWord(relatedKeywords.at(downWordIndex))
-        if(e.key === 'ArrowUp') return setActiveWord(relatedKeywords.at(upWordIndex))
+        else if(e.key === 'ArrowDown') {
+            setActiveWord(relatedKeywords.at(downWordIndex))
+            trackEvent(`type_연관검색어-아래이동`)
+        }
+        else if(e.key === 'ArrowUp') {
+            setActiveWord(relatedKeywords.at(upWordIndex))
+            trackEvent(`type_연관검색어-위이동`)
+        }
     }
 
     useEffect(()=>{
@@ -31,8 +40,15 @@ const SearchBar = ({relatedKeywords, setSearchWord, on, search}) => {
 
     const [inputFocus, setInputFocus] = useState(false)
 
-    const handleFocus = () => setInputFocus(true)
+    const handleFocus = () => {setInputFocus(true); trackEvent('click_검색바');}
     const handleBlur = () => setInputFocus(false)
+
+    useEffect(()=>{
+
+        if(!(inputFocus && on)) return
+        
+        trackEvent(`view_연관검색어-${searchWord}`);
+    },[inputFocus, on])
 
     return (
         <header className="flex items-center justify-center w-full h-83r">

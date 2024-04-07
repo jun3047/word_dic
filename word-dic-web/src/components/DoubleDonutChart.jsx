@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Doughnut, getElementAtEvent } from 'react-chartjs-2';
 import { Chart, ArcElement} from 'chart.js';
+import { trackEvent } from '../logging/amplitude';
 
 Chart.register(ArcElement);
 
@@ -64,7 +65,7 @@ Chart.register(doughnutLabelPlugin);
 
 const DoubleDonutChart = ({setWord, emojiName, activeWord}) => {
 
-    const data = DoubleDonutData(activeWord);
+  const data = DoubleDonutData(activeWord);
 
   const chartRef = useRef();
   const onClick = (e) => {
@@ -75,8 +76,13 @@ const DoubleDonutChart = ({setWord, emojiName, activeWord}) => {
 
     const {datasetIndex, index} = element
 
-    if (datasetIndex === 0) return setWord(data.datasets[datasetIndex].label[0][index])
-    setWord(data.datasets[datasetIndex].label[index])
+    const nextWord =
+        datasetIndex === 0 ?
+        data.datasets[datasetIndex].label[0][index]:
+        data.datasets[datasetIndex].label[index]
+    setWord(nextWord)
+
+    trackEvent(`click_차트-${nextWord}-${datasetIndex}`)
   }
 
   const options = {

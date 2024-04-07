@@ -2,6 +2,7 @@ import PagiNation from "./PagiNation"
 import WordBox from "./WordBox"
 import PopUp from './PopUp';
 import { useEffect, useState } from "react";
+import { trackEvent } from "../logging/amplitude";
 
 
 const PAGE_SIZE = 20; // 페이지당 표시할 항목의 수
@@ -55,6 +56,10 @@ const 유사단어표현 = (
         
     },[nowAlign, nowFilterList, 유사표현List, word])
 
+    useEffect(()=>{
+        trackEvent(`click_필터-${nowFilterList}`)
+    },[nowFilterList])
+
     const [page, setPage] = useState(1); // 현재 페이지 번호
     const [paginatedList, setPaginatedList] = useState([]); // 현재 페이지에 해당하는 리스트
   
@@ -92,7 +97,16 @@ const 유사단어표현 = (
             <section className="flex flex-wrap w-full my-18r mx-48r gap-8r">
                 {
                     paginatedList.map((_word, i) =>
-                        <WordBox active={word === _word.text} setWord={(text)=>setWord(text)} key={i} word={_word.text} 소속={_word['소속']} />
+                        <WordBox 
+                            setWord={(text)=>{
+                                setWord(text);
+                                trackEvent(`click_wordBox-${text}`)
+                            }}
+                            active={word === _word.text}
+                            key={i}
+                            word={_word.text}
+                            소속={_word['소속']}
+                        />
                     )
                 }   
             </section>

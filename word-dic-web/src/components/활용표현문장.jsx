@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PagiNation from "./PagiNation"
 import WordBox from "./WordBox"
+import { trackEvent } from "../logging/amplitude";
 
 const PAGE_SIZE = 2; // 페이지당 표시할 항목의 수
 
@@ -38,6 +39,10 @@ const 활용표현문장 = (
         setPaginatedList(_data);
 
     }, [data, page]);
+
+    useEffect(() => {
+        trackEvent(`click_활용문장-${on활용표현}`)
+    }, [on활용표현]);
 
 
     return (

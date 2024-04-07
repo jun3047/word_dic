@@ -1,4 +1,5 @@
 import React from 'react';
+import { trackEvent } from '../logging/amplitude';
 
 
 const emotionList = [
@@ -74,7 +75,10 @@ const CardList = ({setWord, word}) => {
 const CardItem = ({word, setWord, active}) => {
 
     return (
-        <article onClick={()=>setWord(word)} className={`flex ${active ? "bg-[#E9E9E9]" : 'bg-white'} hover:bg-[#E9E9E9] flex-col gap-10r justify-center items-center border-2 rounded-xl w-160r h-200r border-[#EDEDED]`}>
+        <article onClick={()=>{
+                trackEvent(`click_이모티콘-${word}`)
+                setWord(word)
+            }} className={`flex ${active ? "bg-[#E9E9E9]" : 'bg-white'} hover:bg-[#E9E9E9] flex-col gap-10r justify-center items-center border-2 rounded-xl w-160r h-200r border-[#EDEDED]`}>
             <img src={`/emoji/${word}.png`} alt={`${word}`} className='w-130r h-130r'/>
             <p className='font-semibold subTitle-1'>{word}</p>
         </article>

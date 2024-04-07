@@ -1,4 +1,11 @@
+import React, { useEffect } from "react";
+import { trackEvent } from "../logging/amplitude";
+
 const PopUp = ({on, nowAlign, setNowAlign}) => {
+
+  useEffect(()=>{
+    trackEvent(`click_분류-${nowAlign}`)
+  },[])
 
     return (
       <div className={`absolute flex flex-col m-0 bg-white rounded-md shadow-md top-50r right-0r w-105r py-10r ${on || 'hidden'}`}>

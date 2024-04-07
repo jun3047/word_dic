@@ -1,5 +1,6 @@
 import DoubleDonutChart from './DoubleDonutChart';
 import CardList from './CardList';
+import { trackEvent } from '../logging/amplitude';
 
 const 감정표현선택 = ({
     wordData,
@@ -9,15 +10,14 @@ const 감정표현선택 = ({
     setWord
 }) => {
 
-    console.log(wordData['img'])
-    console.log(word)
-    console.log(wordData["소속"])
-
     return (
         <div className="relative flex flex-col items-center justify-center w-1/2 h-full px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
                 <h3 className="font-bold ml-5r headline-2">감정 표현 선택하기</h3>
-                <button onClick={setIsCard} className="mr-15r caption-1 font-medium justify-center items-center py-7r px-15r flex gap-5r rounded-full text-[#555555] bg-[#EDEDED]">
+                <button onClick={() => {
+                        trackEvent(`click_그래프전환-${!isCard ? '이모티콘' : '감정차트'}`)
+                        setIsCard()
+                    }} className="mr-15r caption-1 font-medium justify-center items-center py-7r px-15r flex gap-5r rounded-full text-[#555555] bg-[#EDEDED]">
                     {
                         isCard ? 
                         <img src="/svg/emojiIcon.svg" alt="emogiIcon" className="w-12r h-12r" />:

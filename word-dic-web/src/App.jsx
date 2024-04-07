@@ -10,7 +10,11 @@ import { trackEvent } from './logging/amplitude';
 const App = () => {
 
   useEffect(()=>{
-    trackEvent('test: word-dic-web 1');
+    trackEvent('view_메인-IN');
+
+    window.onbeforeunload = function() {
+      trackEvent('view_메인-OUT');
+    }
   }, [])
   
   const getWordData = (word) => {
@@ -61,6 +65,7 @@ const App = () => {
     const _relatedWords = getRelatedWord(searchWord)
     setRelatedWords(_relatedWords)
   },[searchWord]);
+  
 
   const getRelatedWord = (word) => {
 
@@ -95,6 +100,7 @@ const App = () => {
     <div className='flex flex-col px-120r py-48r'>
       <div className='w-full'>
         <SearchBar
+          searchWord={searchWord}
           setRelatedWords={setRelatedWords}
           relatedKeywords={relatedWords}
           search={(text)=>setWord(text)}
@@ -115,7 +121,10 @@ const App = () => {
               nowAlign={nowAlign}
               setNowAlign={setNowAlign}
               onPopup={onPopup}
-              changePopup={()=>setOnPopup(!onPopup)}
+              changePopup={()=>{
+                trackEvent(`click_분류-${!onPopup ? 'ON' : 'OFF'}`)
+                setOnPopup(!onPopup)
+              }}
               nowFilterList={nowFilterList}
               modifyFilterList={modifyFilterList}
             />
