@@ -53,7 +53,7 @@ const 유사단어표현 = (
 
         setPage(1);
         
-    },[nowAlign, nowFilterList, 유사표현List])
+    },[nowAlign, nowFilterList, 유사표현List, word])
 
     const [page, setPage] = useState(1); // 현재 페이지 번호
     const [paginatedList, setPaginatedList] = useState([]); // 현재 페이지에 해당하는 리스트
