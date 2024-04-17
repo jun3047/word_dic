@@ -1,6 +1,4 @@
 import axios from 'axios';
-import keyList from '../db/license_key.json';
-
 
 const url = process.env.REACT_APP_API_URL
 
@@ -8,7 +6,7 @@ const login = async ({ email, password }) => {
     try {
         const response = await axios.post(`${url}/login`, { email, password });
         return response.data
-        
+
     } catch (error) {
         console.error('사용자 등록 중 오류:', error);
     }
