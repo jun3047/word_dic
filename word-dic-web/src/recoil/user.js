@@ -5,7 +5,6 @@ const TOKEN_NAME = 'token'
 const useUserStore = create((set) => ({
   userToken: localStorage.getItem(TOKEN_NAME),
   setToken: async (license) => {
-    console.log("license:", license)
     localStorage.setItem(TOKEN_NAME, license);
     set({ userToken: license });
   },

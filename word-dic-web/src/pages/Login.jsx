@@ -31,7 +31,6 @@ const Login = () => {
         return alert('비밀번호가 틀렸습니다')
       }
 
-      alert(res.license)
       setToken(res.license)
       window.location.href = '/'
 
