@@ -70,8 +70,8 @@ const Login = () => {
         로그인
       </button>
       <button onClick={goToRegister} className='font-semibold text-[#b4b4b4]'>회원가입</button>
-      <button onClick={geToTumblbug}
-      className='absolute bottom-100r font-semibold text-[#b4b4b4]'>계정을 분실했나요?</button>
+      {/* <button onClick={geToTumblbug}
+      className='absolute bottom-100r font-semibold text-[#b4b4b4]'>계정을 분실했나요?</button> */}
       </div>
     </div>
   );
