@@ -33,7 +33,7 @@ const Login = () => {
 
       alert(res.license)
       setToken(res.license)
-      window.open('/', '_blank');
+      window.location.href = '/'
 
       return alert('로그인 완료')
 

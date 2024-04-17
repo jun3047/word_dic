@@ -15,6 +15,10 @@ const Reigster = () => {
     window.open(url, '_blank');
   }
 
+  const geToLogin = () => {
+    window.location.href = '/login'
+  }
+
   const handleRegister = async () => {
     try {
       const res = await register({
@@ -84,6 +88,7 @@ const Reigster = () => {
         회원가입
       </button>
       <button onClick={geToTumblbug} className='font-semibold text-[#b4b4b4]'>라이센스 키가 없나요?</button>
+      <button onClick={geToLogin} className='font-semibold text-[#b4b4b4]'>로그인으로 가기</button>
       </div>
     </div>
   );
