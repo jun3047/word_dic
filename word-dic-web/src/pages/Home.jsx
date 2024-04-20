@@ -29,8 +29,14 @@ const Home = () => {
   }
 
   const get유사단어List = (word) => {
-    if(!기본표현[word]) return
-    return 기본표현[word]
+    if(기본표현[word]) return 기본표현[word]
+
+    for (const key in 기본표현) {
+      const list = 기본표현[key];
+      const found = list.find((item) => item.text === word);
+      if (found) return list;
+    }
+    return null;
   }
 
   const initWord = '화나다';
