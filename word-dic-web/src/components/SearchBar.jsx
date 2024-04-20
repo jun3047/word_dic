@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 
 const SearchBar = ({relatedKeywords, setSearchWord, searchWord, on, search}) => {
 
-
     const [activeWord, setActiveWord] = useState(relatedKeywords[0])
     const inputRef = useRef(null);
 

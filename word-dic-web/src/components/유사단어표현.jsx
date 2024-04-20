@@ -39,12 +39,8 @@ const 유사단어표현 = (
 
     const sorted유사표현 = (alignType, filterList, _유사표현List) => {
 
-        const UNBLOCK_WORDS = ['제외필터', '기본표현']
-        const _filterList = filterList.filter((filterName) => UNBLOCK_WORDS.includes(filterName))
-
         const _aligned유사표현List = aligned유사표현List(alignType, _유사표현List)
-        const _filtered유사표현List = filtered유사표현List(_filterList, _aligned유사표현List)
-        // const _filtered유사표현List = filtered유사표현List(filterList, _aligned유사표현List)
+        const _filtered유사표현List = filtered유사표현List(filterList, _aligned유사표현List)
 
         return _filtered유사표현List
     }
@@ -92,7 +88,8 @@ const 유사단어표현 = (
             <hr className="w-full h-1r bg-[#E5E5E5]"/>
             <fieldset className="flex items-start w-full gap-24r my-17r px-14r">
                 {
-                    ['기본표현', '행동표현', '신체감각', '제외필터'].map((text, i) => 
+                    // '행동표현', '신체감각'는 현재 제외
+                    ['기본표현','제외필터'].map((text, i) => 
                             <FilterSelect onChange={(text)=> modifyFilterList(text)} checked={nowFilterList.includes(text)} key={i} text={text} />
                     )
                 }
