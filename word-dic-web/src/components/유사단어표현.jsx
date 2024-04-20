@@ -33,14 +33,18 @@ const 유사단어표현 = (
 
         const __유사표현List = _유사표현List.filter((word) => filterList.includes(word.type))
 
-        if(filterList.includes('제외필터')) return __유사표현List.filter((word) => word['대중성'] > 200)
+        if(filterList.includes('제외필터')) return __유사표현List.filter((word) => word['대중성'] > 400)
         else return __유사표현List
     }
 
     const sorted유사표현 = (alignType, filterList, _유사표현List) => {
 
+        const UNBLOCK_WORDS = ['제외필터', '기본표현']
+        const _filterList = filterList.filter((filterName) => UNBLOCK_WORDS.includes(filterName))
+
         const _aligned유사표현List = aligned유사표현List(alignType, _유사표현List)
-        const _filtered유사표현List = filtered유사표현List(filterList, _aligned유사표현List)
+        const _filtered유사표현List = filtered유사표현List(_filterList, _aligned유사표현List)
+        // const _filtered유사표현List = filtered유사표현List(filterList, _aligned유사표현List)
 
         return _filtered유사표현List
     }
