@@ -3,7 +3,7 @@ import PagiNation from "./PagiNation"
 import WordBox from "./WordBox"
 import { trackEvent } from "../logging/amplitude";
 
-const PAGE_SIZE = 2; // 페이지당 표시할 항목의 수
+const PAGE_SIZE = 3; // 페이지당 표시할 항목의 수
 
 const 활용표현문장 = (
     {

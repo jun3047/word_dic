@@ -6,6 +6,8 @@ const tsvFilename = '434.tsv';
 // JSON 파일 경로
 const jsonFilename = '기본표현.json';
 
+const filterWord = (word) => word.replace('\r', '')
+
 // TSV 파일 읽기
 fs.readFile(tsvFilename, 'utf8', (err, data) => {
     if (err) {
@@ -32,7 +34,7 @@ fs.readFile(tsvFilename, 'utf8', (err, data) => {
             const variation = row[i + 1];
             if (example && variation) {
                 examples.push(example);
-                variations.push(variation);
+                variations.push(filterWord(variation));
             }
         }
         tsvJsonData[word] = {
