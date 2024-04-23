@@ -64,7 +64,7 @@ const emotionList = [
 const CardList = ({setWord, word}) => {
 
     return (
-        <div className="mt-35r grid grid-cols-3 max-h-[60vh] overflow-scroll gap-10r">
+        <div className="mt-35r grid lg:grid-cols-3 lg:max-h-[60vh] grid-cols-5 overflow-scroll gap-10r">
             {
                 emotionList.map((text,i) => <CardItem active={word === text} setWord={setWord} key={i} word={text} />)
             }

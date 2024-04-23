@@ -91,12 +91,12 @@ const DoubleDonutChart = ({setWord, emojiName, activeWord}) => {
     hoverOffset: 15,
     borderWidth: 2,
     animation: {
-        duration: 0 // 애니메이션 효과 없애기
+        duration: 0
       },    
   };
 
   return (
-    <div className="relative flex items-center justify-center w-full h-full max-w-590r max-h-590r">
+    <div className="relative flex items-center justify-center w-full h-full min-w-500r min-h-500r max-w-590r max-h-590r">
     <img
         className="absolute w-140r h-140r"
         src={`/emoji/${emojiName}.png`}

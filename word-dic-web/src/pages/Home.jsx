@@ -118,8 +118,8 @@ const Home = () => {
           on={relatedWords.length > 0}
         />
       </div>
-      <div className='flex w-full'>
-        <div className='flex flex-col w-1/2 h-full'>
+      <div className='flex flex-col w-full lg:flex-row'>
+        <div className='flex flex-col w-full h-full lg:w-1/2'>
             <유사단어표현
               setWord={(text) => setWord(text)}
               유사표현List={유사표현List}

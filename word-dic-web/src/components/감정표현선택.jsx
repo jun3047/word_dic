@@ -11,7 +11,7 @@ const 감정표현선택 = ({
 }) => {
 
     return (
-        <div className="relative flex flex-col items-center justify-center w-1/2 h-full px-40r">
+        <div className="relative flex flex-col items-center justify-center w-full h-full lg:w-1/2 min-w-580r px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
                 <h3 className="font-bold ml-5r headline-2">감정 표현 선택하기</h3>
                 <button onClick={() => {
