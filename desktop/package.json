@@ -1,5 +1,5 @@
 {
-  "name": "prefect-word-dic",
+  "name": "perfect-word-dic",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
@@ -10,11 +10,13 @@
     "deploy:win64": "electron-builder --win nsis:x64"
   },
   "build": {
-    "appId": "com.prefect-word-dic.app",
-    "icon": "icon.png"
+    "appId": "com.perfect-word-dic.app",
+    "icon": "icon.png",
+    "forceCodeSigning": true
   },
   "license": "MIT",
   "devDependencies": {
+    "@electron/notarize": "^2.3.0",
     "electron": "^29.0.1"
   }
 }
