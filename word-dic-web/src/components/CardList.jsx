@@ -3,15 +3,6 @@ import { trackEvent } from '../logging/amplitude';
 
 
 const emotionList = [
-    '화나다',
-    '감동하다',
-    '행복하다',
-    '편안하다',
-    '슬프다',
-    '무섭다',
-    '지루하다',
-    '싫다',
-
     '증오하다',
     '화나다',
 
