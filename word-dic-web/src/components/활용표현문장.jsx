@@ -60,22 +60,26 @@ const 활용표현문장 = (
                 <div className="flex flex-col justify-start w-full px-8r">
                     {
                         mean !== undefined && (
-                            <p className="body-text text-[#636363] h-54r w-full flex items-center">
-                                <span className="font-semibold text-[#434343] mr-4r">[뜻]</span>
+                            <p className="body-text text-[#636363] py-10r w-full flex items-start">
+                                <span className="font-semibold mt-0 text-[#434343] mr-4r">[뜻]</span>
                                 {mean}
                             </p>
                         )
                     }
                     {
                         paginatedList.map((text, i) => (
-                                <p key={i} className="body-text text-[#636363] h-54r w-full flex items-center">
+                                <div key={i} className="body-text text-[#636363] py-10r w-full flex items-start">
                                     <span className="font-semibold text-[#434343] w-40r">{i+1+(page-1)*2}.</span>
-                                    <p className="flex items-center gap-6r">
-                                    {text[0]}
+                                    <p className="flex flex-wrap">
+                                    {
+                                        text[0] && text[0].split(' ').map((text, i) => <span key={i} className="m-3r">{text}</span>)
+                                    }
                                     <WordBox active={true} word={text[1]} 소속={소속} />
-                                    {text[2]}
+                                    {
+                                        text[2] && text[2].split(' ').map((text, i) => <span key={i} className="m-3r">{text}</span>)
+                                    }
                                     </p>
-                                </p>
+                                </div>
                             )
                         )
                     }
