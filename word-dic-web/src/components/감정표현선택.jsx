@@ -1,6 +1,7 @@
 import DoubleDonutChart from './DoubleDonutChart';
 import CardList from './CardList';
 import { trackEvent } from '../logging/amplitude';
+import 기본표현 from '../data/기본표현.json'
 
 const 감정표현선택 = ({
     wordData,
@@ -9,6 +10,19 @@ const 감정표현선택 = ({
     setIsCard,
     setWord
 }) => {
+
+    const getChartWord = (word) => {
+
+        let foundWord = ''
+
+        Object.keys(기본표현).forEach((key) => {
+            const list = 기본표현[key];
+            const found = list.find((item) => item.text === word);
+            if (found) foundWord = key
+        })
+
+        return foundWord
+    }
 
     return (
         <div className="relative flex flex-col items-center justify-center w-full h-full lg:w-1/2 min-w-580r px-40r">
@@ -28,7 +42,7 @@ const 감정표현선택 = ({
             </header>
             {
                 isCard ? 
-                <DoubleDonutChart activeWord={word} emojiName={wordData['img']} setWord={setWord}/>:
+                <DoubleDonutChart activeWord={getChartWord(word)} emojiName={wordData['img']} setWord={setWord}/>:
                 <CardList word={word} setWord={setWord}/>
             }
         </div>
