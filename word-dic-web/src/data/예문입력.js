@@ -1,26 +1,26 @@
 const fs = require('fs');
 
-// CSV 파일 경로
-const csvFilename = '434.csv';
+// TSV 파일 경로
+const tsvFilename = '434.tsv';
 
 // JSON 파일 경로
 const jsonFilename = '기본표현.json';
 
-// CSV 파일 읽기
-fs.readFile(csvFilename, 'utf8', (err, data) => {
+// TSV 파일 읽기
+fs.readFile(tsvFilename, 'utf8', (err, data) => {
     if (err) {
         console.error('파일을 읽을 수 없습니다.', err);
         return;
     }
 
-    // CSV 데이터 파싱
-    const rows = data.split('\n').map(row => row.split(','));
+    // TSV 데이터 파싱
+    const rows = data.split('\n').map(row => row.split('\t'));
 
     // 헤더 제거
     const headers = rows.shift();
 
     // JSON 객체 초기화
-    const csvJsonData = {};
+    const tsvJsonData = {};
 
     // 각 행의 데이터 파싱 및 JSON 객체에 저장
     rows.forEach(row => {
@@ -35,37 +35,35 @@ fs.readFile(csvFilename, 'utf8', (err, data) => {
                 variations.push(variation);
             }
         }
-        csvJsonData[word] = {
+        tsvJsonData[word] = {
             'text': word,
             '예문': examples,
             '예문_text': variations
         };
     });
 
+    // 기존 JSON 파일 읽기
     fs.readFile(jsonFilename, 'utf8', (err, data) => {
         if (err) {
             console.error('파일을 읽을 수 없습니다.', err);
             return;
         }
         
-        const JsonData = JSON.parse(data)
+        const jsonData = JSON.parse(data);
     
-        // Json의 Value를 하나씩 꺼낸다.
-        Object.keys(JsonData).forEach(jsonItemKey => {
-
-            JsonData[jsonItemKey].forEach((jsonItem, i)=>{
-                    const foundItem = Object.entries(csvJsonData).find(([key, value]) => value.text === jsonItem.text);
-
-                    if(foundItem){
-                        console.log("찾는 jsonItem: ", jsonItem)
-                        console.log("찾은 foundItem[1]: ", foundItem[1])
-                        JsonData[jsonItemKey][i]['예문'] = foundItem[1]['예문']
-                        JsonData[jsonItemKey][i]['예문_text'] = foundItem[1]['예문_text']
-                    }
-            })
+        // JSON 데이터 수정
+        Object.keys(jsonData).forEach(jsonItemKey => {
+            jsonData[jsonItemKey].forEach((jsonItem, i) => {
+                const foundItem = Object.entries(tsvJsonData).find(([key, value]) => value.text === jsonItem.text);
+                if (foundItem) {
+                    jsonData[jsonItemKey][i]['예문'] = foundItem[1]['예문'];
+                    jsonData[jsonItemKey][i]['예문_text'] = foundItem[1]['예문_text'];
+                }
+            });
         });
     
-        fs.writeFile('new_Data.json', JSON.stringify(JsonData), 'utf8', (err) => {
+        // 수정된 JSON 데이터를 파일로 저장
+        fs.writeFile('new_Data.json', JSON.stringify(jsonData), 'utf8', (err) => {
             if (err) {
                 console.error('파일을 저장할 수 없습니다.', err);
                 return;
@@ -74,9 +72,3 @@ fs.readFile(csvFilename, 'utf8', (err, data) => {
         });
     });    
 });
-
-// Json의 Value를 하나씩 꺼낸다.
-// Value는 list이고 Value의 요소들을 하나씩 꺼낸다. jsonItem이라고 한다.
-// csvJsonData에서 text가 jsonItem.text과 같은 요소를 찾는다.
-// jsonItem의 해당 요소의 "예문"과 "예문_text"를 csvJsonData 요소의 값으로 할당한다.
-// csvJsonData의 모든 값을 순회하고 수정된 JsonData를 저장한다.

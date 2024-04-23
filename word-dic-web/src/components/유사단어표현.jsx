@@ -26,7 +26,7 @@ const 유사단어표현 = (
 
     const aligned유사표현List = (alignType, _유사표현List) => {
         if(alignType === '글자순') return sortKoreanWordsList(_유사표현List)
-        return 유사표현List.sort((a, b) => b[alignType] - a[alignType])
+        return _유사표현List.sort((a, b) => b[alignType] - a[alignType])
     }
 
     const filtered유사표현List = (filterList, _유사표현List) => {
