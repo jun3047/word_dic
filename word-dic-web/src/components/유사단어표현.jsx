@@ -75,7 +75,7 @@ const 유사단어표현 = (
     return (
         <main className="flex flex-col items-center justify-center w-full h-full px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
-                <h2 className="font-bold ml-37r headline-2">유사단어 표현</h2>
+                <h2 className="font-bold headline-2">유사단어 표현</h2>
                 <div onClick={changePopup} className={`flex relative items-center justify-center w-40r h-40r rounded-full ${onPopup && 'bg-[#F1F1F1]'}`}>
                     <img className="w-20r h-17r" src="/svg/alignIcon.svg" alt="alignIcon"/>
                     <PopUp
