@@ -50,7 +50,7 @@ const Home = () => {
 
   const [onPopup, setOnPopup] = useState(false);
 
-  const [nowAlign, setNowAlign] = useState('대중성');
+  const [nowAlign, setNowAlign] = useState('친숙성');
   const [nowFilterList, setNowFilterList] = useState(['기본표현']);
 
   useEffect(()=>{

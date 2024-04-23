@@ -33,7 +33,7 @@ const 유사단어표현 = (
 
         const __유사표현List = _유사표현List.filter((word) => filterList.includes(word.type))
 
-        if(filterList.includes('제외필터')) return __유사표현List.filter((word) => word['대중성'] > 400)
+        if(filterList.includes('제외필터')) return __유사표현List.filter((word) => word['친숙성'] > 400)
         else return __유사표현List
     }
 
