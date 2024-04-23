@@ -96,9 +96,9 @@ const DoubleDonutChart = ({setWord, emojiName, activeWord}) => {
   };
 
   return (
-    <div className="relative flex items-center justify-center w-full h-full min-w-500r min-h-500r max-w-590r max-h-590r">
+    <div className="relative flex items-center justify-center w-full h-full aspect-square min-w-500r min-h-500r max-w-590r max-h-590r">
     <img
-        className="absolute w-140r h-140r"
+        className="absolute w-190r h-190r"
         src={`/emoji/${emojiName}.png`}
         alt="emoji"
     />
