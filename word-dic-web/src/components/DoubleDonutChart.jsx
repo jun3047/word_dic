@@ -112,7 +112,7 @@ const DoubleDonutChart = ({setWord, emojiName, activeWord}) => {
 const dataLength = 40;
 
 const FirstData = {
-    data: [2, 5, 4, 5, 11, 2, 4, 7],
+    data: [3, 5, 4, 5, 11, 2, 3, 7],
     label: [
         '화나다',
         '감동하다',
@@ -167,6 +167,7 @@ const FirstData = {
 }
 
 const SecondDataLabelText = [
+    '불쾌하다',
     '증오하다',
     '화나다',
 
@@ -204,7 +205,6 @@ const SecondDataLabelText = [
 
     '놀라다',
     '무섭다',
-    '불쾌하다',
     '조마조마하다',
 
     '우습다',
