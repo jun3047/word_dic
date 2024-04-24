@@ -8,6 +8,7 @@ const PagiNation = ({lastNum, nowPageNum, setNowPageNum}) => {
     return (
         <nav className="flex gap-20r my-12r">
             <img onClick={()=>{
+                if(isFirst) return
                 setNowPageNum(nowPageNum - 1)
                 trackEvent(`click_활용문장-이전-${nowPageNum - 1}`)
             }} className={`${isFirst ? 'opacity-0' : 'opacity-100'} `}
@@ -19,6 +20,7 @@ const PagiNation = ({lastNum, nowPageNum, setNowPageNum}) => {
                 <span className={`${isLast ? 'text-[#7C7C7C]':'text-[#C8C8C8]'}`}>{lastNum}</span>
             </p>
             <img onClick={()=>{
+                if(isFirst) return
                 setNowPageNum(nowPageNum + 1)
                 trackEvent(`click_활용문장-다음-${nowPageNum + 1}`)
             }} className={`${isLast ? 'opacity-0' : 'opacity-100'}`}
