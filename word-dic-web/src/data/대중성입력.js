@@ -3,7 +3,7 @@ const fs = require('fs');
 const allDataFilename = '434AllData.csv';
 const jsonFilename = '기본표현.json';
 
-// 단어의 오탈자를 수정한 경우 수종으로 입력해줘야 함
+// 단어의 오탈자를 수정한 경우 수동으로 입력해줘야 함
 
 // TSV 파일 읽기
 fs.readFile(allDataFilename, 'utf8', (err, data) => {

@@ -1,9 +1,7 @@
 const fs = require('fs');
 
-// TSV 파일 경로
 const tsvFilename = '434.tsv';
 
-// JSON 파일 경로
 const jsonFilename = '기본표현.json';
 
 const filterWord = (word) => word.replace('\r', '')

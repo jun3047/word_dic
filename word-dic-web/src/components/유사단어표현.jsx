@@ -89,7 +89,7 @@ const 유사단어표현 = (
             <fieldset className="flex items-start w-full gap-24r my-17r px-14r">
                 {
                     // '행동표현', '신체감각'는 현재 제외
-                    ['기본표현','제외필터'].map((text, i) => 
+                    ['기본표현','행동표현', '신체감각','제외필터'].map((text, i) => 
                             <FilterSelect onChange={(text)=> modifyFilterList(text)} checked={nowFilterList.includes(text)} key={i} text={text} />
                     )
                 }
