@@ -19,6 +19,9 @@
 .env.production.local
 .env
 
+# local data
+/src/localData
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
