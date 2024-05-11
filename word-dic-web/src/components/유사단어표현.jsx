@@ -51,10 +51,13 @@ const 유사단어표현 = (
     useEffect(()=>{
         const _sorted유사표현 = sorted유사표현(nowAlign, nowFilterList, 유사표현List)
         _set유사표현List(_sorted유사표현)
-
-        setPage(1);
         
     },[nowAlign, nowFilterList, 유사표현List, word])
+
+    
+    useEffect(()=>{
+        setPage(1);
+    },[nowAlign, nowFilterList, 유사표현List])
 
     useEffect(()=>{
         trackEvent(`click_필터-${nowFilterList}`)
