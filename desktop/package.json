@@ -11,8 +11,7 @@
   },
   "build": {
     "appId": "com.perfect-word-dic.app",
-    "icon": "icon.png",
-    "forceCodeSigning": true
+    "icon": "icon.png"
   },
   "license": "MIT",
   "devDependencies": {
