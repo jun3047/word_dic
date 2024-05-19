@@ -69,7 +69,7 @@ const 활용표현문장 = (
                     {
                         paginatedList.map((text, i) => (
                                 <div key={i} className="body-text text-[#636363] py-10r w-full flex items-start">
-                                    <span className="font-semibold text-[#434343] w-40r">{i+1+(page-1)*2}.</span>
+                                    <span className="font-semibold text-[#434343] w-40r">{i+1+(page-1)*PAGE_SIZE}.</span>
                                     <p className="flex flex-wrap">
                                     {
                                         text[0] && text[0].split(' ').map((text, i) => <span key={i} className="m-3r">{text}</span>)
