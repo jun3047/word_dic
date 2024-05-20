@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import 유사표현단어 from '../component/유사표현단어';
-import 활용표현문장 from '../component/활용표현문장';
-import 감정표현선택 from '../component/감정표현선택';
+import 유사표현단어 from '../feature/emotionContent/component/유사표현단어';
+import 활용표현문장 from '../feature/emotionContent/component/활용표현문장';
+import 감정표현선택 from '../feature/emotionNav/component/감정표현선택';
 import 기본표현 from '../data/기본표현.json';
-import { trackEvent } from '../logging/amplitude';
-import Header from '../component/Header';
-import { useTrackEvent } from '../logging/Log';
+import Header from '../feature/header/component/Header';
+import { trackEvent } from '../feature/logging/amplitude';
+import useTrackEvent from '../feature/logging/useTrackEvent';
 import { findWordData } from '../util/findWordData';
 
 const Home = () => {

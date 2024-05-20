@@ -2,9 +2,10 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import PagiNation from "./PagiNation";
 import WordBox from "./WordBox";
 import PopUp from './PopUp';
-import { TrackButton, useTrackEvent } from '../logging/Log';
-import { trackEvent } from '../logging/amplitude';
-import { getSortedFiltered유사표현List } from '../util/getSortedFiltered유사표현List';
+import TrackButton from '../../logging/TrackButton'
+import useTrackEvent from '../../logging/useTrackEvent'
+import { trackEvent } from '../../logging/amplitude';
+import { getSortedFiltered유사표현List } from '../../../util/getSortedFiltered유사표현List';
 
 const PAGE_SIZE = 20;
 const FILTER_LIST = ['기본표현', '행동표현', '신체감각', '제외필터'];

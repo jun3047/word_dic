@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { trackEvent } from '../logging/amplitude';
-import { useTrackEvent } from '../logging/Log';
+import { trackEvent } from '../../logging/amplitude';
+import useTrackEvent from '../../logging/useTrackEvent';
 import 연관검색어 from './연관검색어';
 
 const SearchBar = ({ relatedKeywords, setSearchWord, searchWord, on, search }) => {

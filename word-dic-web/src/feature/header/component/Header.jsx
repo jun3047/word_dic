@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import 기본표현 from '../data/기본표현.json';
-import SearchBar from '../component/SearchBar';
-import TitleHeader from '../component/TitleHeader';
+import 기본표현 from '../../../data/기본표현.json';
+import SearchBar from './SearchBar';
+import TitleHeader from './TitleHeader';
 
 const Header = ({
     word,
@@ -15,11 +15,11 @@ const Header = ({
     return(
         <header className='w-full'>
             <SearchBar
-            searchWord={searchWord}
-            relatedKeywords={relatedWords}
-            search={handleSearch}
-            setSearchWord={handleSearchWordChange}
-            on={relatedWords.length > 0}
+              searchWord={searchWord}
+              relatedKeywords={relatedWords}
+              search={handleSearch}
+              setSearchWord={handleSearchWordChange}
+              on={relatedWords.length > 0}
             />
             <TitleHeader word={word} on={relatedWords.length > 0} />
       </header>
@@ -39,4 +39,3 @@ const getRelatedWord = (word) => {
     }
     return [...new Set(relatedWords)].slice(0, 5);
   };
-  

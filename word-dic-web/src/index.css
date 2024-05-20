@@ -6,7 +6,7 @@
 @font-face {
   font-family: "SUITE";
   font-weight: normal;
-  src: url("./fonts/SUITE.ttf") format("truetype");
+  src: url("./font/SUITE.ttf") format("truetype");
 }
 
 html{

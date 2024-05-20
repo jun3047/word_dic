@@ -1,8 +1,8 @@
 import React, { useMemo, useCallback } from 'react';
 import DoubleDonutChart from './DoubleDonutChart';
 import CardList from './CardList';
-import 기본표현 from '../data/기본표현.json';
-import { TrackButton } from '../logging/Log';
+import 기본표현 from '../../../data/기본표현.json';
+import TrackButton from '../../logging/useTrackEvent';
 
 const 감정표현선택 = ({ wordData, word, isCard, setIsCard, setWord }) => {
 
@@ -22,7 +22,7 @@ const 감정표현선택 = ({ wordData, word, isCard, setIsCard, setWord }) => {
     const chartWord = useMemo(() => getChartWord(word), [word, getChartWord]);
 
     return (
-        <section className="relative flex flex-col items-center justify-center w-full h-full lg:w-1/2 min-w-580r px-40r">
+        <nav className="relative flex flex-col items-center justify-center w-full h-full lg:w-1/2 min-w-580r px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
                 <h3 className="font-bold ml-5r headline-2">감정 표현 선택하기</h3>
                 <TrackButton
@@ -41,7 +41,7 @@ const 감정표현선택 = ({ wordData, word, isCard, setIsCard, setWord }) => {
             ) : (
                 <CardList word={word} setWord={setWord} />
             )}
-        </section>
+        </nav>
     );
 };
 

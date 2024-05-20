@@ -1,6 +1,6 @@
 import React from 'react';
-import emotionList from '../data/emotionList';
-import { TrackButton } from '../logging/Log';
+import emotionList from '../../../data/emotionList';
+import TrackButton from '../../logging/useTrackEvent';
 
 const CardList = ({setWord, word}) => {
 

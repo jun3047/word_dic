@@ -1,4 +1,4 @@
-import {TrackButton} from '../logging/Log';
+import TrackButton from '../../logging/TrackButton';
 
 const WordBox = ({word, 소속, active, setWord = undefined}) => {
 

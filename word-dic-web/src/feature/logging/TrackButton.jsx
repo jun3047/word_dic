@@ -1,13 +1,4 @@
-import { useEffect } from 'react';
 import { trackEvent } from './amplitude';
-
-const useTrackEvent = (eventName, dep = [], cond = true) => {
-    useEffect(() => {
-        if (cond) {
-            trackEvent(eventName);
-        }
-    }, dep);
-};
 
 const TrackButton = ({ eventName, onClick, children, ...props }) => {
     const handleClick = (e) => {
@@ -24,4 +15,4 @@ const TrackButton = ({ eventName, onClick, children, ...props }) => {
     );
 };
 
-export {useTrackEvent, TrackButton};
+export default TrackButton;

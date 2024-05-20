@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import PagiNation from "./PagiNation"
 import WordBox from "./WordBox"
-import { useTrackEvent } from "../logging/Log";
+import useTrackEvent from "../../logging/useTrackEvent";
 
 const PAGE_SIZE = 3; // 페이지당 표시할 항목의 수
 
