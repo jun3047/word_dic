@@ -42,8 +42,8 @@ const Login = () => {
   };
 
   return (
-    <div className='flex items-center justify-center mx-60r mt-200r'>
-      <div className="flex flex-col items-center w-500r">
+    <main className='flex items-center justify-center mx-60r mt-200r'>
+      <section className="flex flex-col items-center w-500r">
       <img className='w-70r h-70r' src="/emoji/행복하다.png" alt="웃는얼굴" />
       <h2 className='font-bold headline-1 mt-10r mb-70r'>환영합니다</h2>
       <form className='flex flex-col w-full h-full gap-30r' action="">
@@ -71,8 +71,8 @@ const Login = () => {
       <button onClick={goToRegister} className='font-semibold text-[#b4b4b4]'>회원가입</button>
       {/* <button onClick={geToTumblbug}
       className='absolute bottom-100r font-semibold text-[#b4b4b4]'>계정을 분실했나요?</button> */}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

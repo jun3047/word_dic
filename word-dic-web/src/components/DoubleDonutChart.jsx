@@ -70,19 +70,19 @@ const DoubleDonutChart = ({setWord, emojiName, activeWord}) => {
   const chartRef = useRef();
   const onClick = (e) => {
 
-    const element = getElementAtEvent(chartRef.current, e)[0]
+    const element = getElementAtEvent(chartRef.current, e)[0];
 
-    if(element?.datasetIndex === undefined) return
+    if(element?.datasetIndex === undefined) return;
 
-    const {datasetIndex, index} = element
+    const {datasetIndex, index} = element;
 
     const nextWord =
         datasetIndex === 0 ?
         data.datasets[datasetIndex].label[0][index]:
-        data.datasets[datasetIndex].label[index]
-    setWord(nextWord)
+        data.datasets[datasetIndex].label[index];
+    setWord(nextWord);
 
-    trackEvent(`click_차트-${nextWord}-${datasetIndex}`)
+    trackEvent(`click_차트-${nextWord}-${datasetIndex}`);
   }
 
   const options = {
@@ -92,18 +92,18 @@ const DoubleDonutChart = ({setWord, emojiName, activeWord}) => {
     borderWidth: 2,
     animation: {
         duration: 0
-      },    
+    }
   };
 
   return (
-    <div className="relative flex items-center justify-center w-full h-full aspect-square min-w-500r min-h-500r max-w-590r max-h-590r">
+    <section className="relative flex items-center justify-center w-full h-full aspect-square min-w-500r min-h-500r max-w-590r max-h-590r">
     <img
         className="absolute w-190r h-190r"
         src={`/emoji/${emojiName}.png`}
         alt="emoji"
     />
     <Doughnut ref={chartRef} onClick={onClick} data={data} options={options} />
-    </div>
+    </section>
   );
 };
 

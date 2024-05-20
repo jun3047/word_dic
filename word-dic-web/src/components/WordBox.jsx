@@ -1,4 +1,6 @@
-const WordBox = ({word, 소속, active, setWord = () => {}}) => {
+import {TrackButton} from '../logging/Log';
+
+const WordBox = ({word, 소속, active, setWord = undefined}) => {
 
     let bgColorClass;
     let borderColorClass;
@@ -64,11 +66,18 @@ const WordBox = ({word, 소속, active, setWord = () => {}}) => {
 
     textColorClass = active ? "text-white" : textColorClass;
     bgColorClass = active ? bgColorClass : `bg-white ${hoverBgColorClass}`;
+
+    const handleClick = () => {
+      if(setWord) setWord(word);
+    }
     
     return (
-        <mark onClick={()=>setWord(word)} class={`${borderColorClass} ${bgColorClass} border-2 rounded-xl inline-flex items-center justify-center px-19r py-1r group`}>
-            <p className={`${textColorClass} body-text font-bold group-hover:text-white`}>{word}</p>
-        </mark>
+      <TrackButton
+          eventName={`click_wordBox-${word}`}
+          onClick={handleClick} class={`${borderColorClass} ${bgColorClass} ${setWord || 'pointer-events-none'} border-2 rounded-xl inline-flex items-center justify-center px-19r py-1r group`}
+        >
+          <p className={`${textColorClass} body-text font-bold group-hover:text-white`}>{word}</p>
+      </TrackButton>
     )
 }
 
