@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { login, register } from '../api/user';
 import useUserStore from '../recoil/user';
-// import {trackEvent} from "../logging/amplitude";
 
 const Reigster = () => {
   const [email, setEmail] = useState('');

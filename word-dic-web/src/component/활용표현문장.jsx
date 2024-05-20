@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PagiNation from "./PagiNation"
 import WordBox from "./WordBox"
-import { trackEvent } from "../logging/amplitude";
 import { useTrackEvent } from "../logging/Log";
 
 const PAGE_SIZE = 3; // 페이지당 표시할 항목의 수
@@ -9,33 +8,32 @@ const PAGE_SIZE = 3; // 페이지당 표시할 항목의 수
 const 활용표현문장 = (
     {
         word,
-        mean,
-        data,
-        dataText,
-        on활용표현,
-        setOn활용표현,
-        소속
+        wordData,
     }) => {
 
     const [page, setPage] = useState(1);
+    const [on활용표현, setOn활용표현] = useState(true);
 
+    const { 소속, mean, sentences, sentenceWords} = {
+        소속: wordData?.소속,
+        mean: wordData?.뜻,
+        sentences: wordData.예문,
+        sentenceWords: wordData.예문_text,
+    };
+    
     const paginatedList = useMemo(() => {
         const start = (page - 1) * PAGE_SIZE;
         const end = start + PAGE_SIZE;
 
-        return data.slice(start, end).map((text, i) => {
-            const _dataText = dataText[i + start]
-            const parts = text.split(_dataText);
-            return [parts[0], _dataText, parts[1]];
+        return sentences.slice(start, end).map((text, i) => {
+            const sentenceWord = sentenceWords[i + start]
+            const parts = text.split(sentenceWord);
+            return [parts[0], sentenceWord, parts[1]];
         });
-    }, [data, page, dataText])
-
-    const handleToggle = useCallback(() => {
-        setOn활용표현((prev) => !prev);
-    }, [setOn활용표현]);
+    }, [sentences, page, sentenceWords])
 
     useTrackEvent(`click_활용문장-${on활용표현}`, [on활용표현]);
-
+    
     useEffect(() => {
         setPage(1);
     }, [word]);
@@ -44,7 +42,7 @@ const 활용표현문장 = (
         <section className="flex flex-col items-center justify-center w-full h-full px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
                 <h2 className="font-bold headline-2">활용 문장 표현</h2>
-                <button onClick={handleToggle} className="flex items-center justify-center w-40r h-40r">
+                <button onClick={()=>setOn활용표현(!on활용표현)} className="flex items-center justify-center w-40r h-40r">
                     <img className={`w-21r h-15r transform ${on활용표현 || "rotate-180"}`} src="/svg/downArraw_active.svg" alt="alignIcon" />
                 </button>
             </header>
@@ -60,7 +58,7 @@ const 활용표현문장 = (
                     <PagiNation
                         nowPageNum={page}
                         setNowPageNum={setPage}
-                        lastNum={Math.ceil(data.length / PAGE_SIZE)}
+                        lastNum={Math.ceil(sentences.length / PAGE_SIZE)}
                     />
                 </>)}
         </section>
@@ -94,6 +92,5 @@ const ExampleSection = ({mean, paginatedList, 소속, page}) => {
 const NotWordBox = ({texts}) => {
     return texts && texts.split(' ').map((text, i) => <span key={i} className="m-3r">{text}</span>)
 }
-
 
 export default 활용표현문장;

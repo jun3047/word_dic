@@ -7,7 +7,7 @@ import LogoutRoute from './LogoutRoute'
 
 const Router = () => {
 
-    // electron 배포 문제로 HOME을 기본으로
+    // electron 배포 문제로 우선 HOME만 사용할
     return <Home />
 
     return (

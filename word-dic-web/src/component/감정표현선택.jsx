@@ -6,6 +6,10 @@ import { TrackButton } from '../logging/Log';
 
 const 감정표현선택 = ({ wordData, word, isCard, setIsCard, setWord }) => {
 
+    const handleToggle = useCallback(() => {
+        setIsCard((prev) => !prev);
+    }, [isCard, setIsCard]);
+
     const getChartWord = useCallback((word) => {
         for (const key in 기본표현) {
             const list = 기본표현[key];
@@ -16,10 +20,6 @@ const 감정표현선택 = ({ wordData, word, isCard, setIsCard, setWord }) => {
     }, []);
 
     const chartWord = useMemo(() => getChartWord(word), [word, getChartWord]);
-
-    const handleToggle = useCallback(() => {
-        setIsCard((prev) => !prev);
-    }, [isCard, setIsCard]);
 
     return (
         <section className="relative flex flex-col items-center justify-center w-full h-full lg:w-1/2 min-w-580r px-40r">

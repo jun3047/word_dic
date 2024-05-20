@@ -2,23 +2,23 @@ import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import PagiNation from "./PagiNation";
 import WordBox from "./WordBox";
 import PopUp from './PopUp';
-import { useTrackEvent } from '../logging/Log';
+import { TrackButton, useTrackEvent } from '../logging/Log';
+import { trackEvent } from '../logging/amplitude';
+import { getSortedFiltered유사표현List } from '../util/getSortedFiltered유사표현List';
 
 const PAGE_SIZE = 20;
+const FILTER_LIST = ['기본표현', '행동표현', '신체감각', '제외필터'];
 
 const 유사표현단어 = ({
     word,
     setWord,
-    onPopup,
-    changePopup,
-    nowFilterList,
-    modifyFilterList,
-    nowAlign,
-    setNowAlign,
     유사표현List,
 }) => {
     const [page, setPage] = useState(1);
-    
+    const [nowAlign, setNowAlign] = useState('친숙성');
+    const [nowFilterList, setNowFilterList] = useState(['기본표현']);
+    const [onPopup, setOnPopup] = useState(false);
+
     const sorted유사표현List = useMemo(() => {
         return getSortedFiltered유사표현List(nowAlign, nowFilterList, 유사표현List);
     }, [nowAlign, nowFilterList, 유사표현List]);
@@ -32,6 +32,14 @@ const 유사표현단어 = ({
         setWord(text);
     }, [setWord]);
 
+    const modifyFilterList = (text) => {
+        setNowFilterList(prev => prev.includes(text) ? prev.filter((filter) => filter !== text) : [...prev, text]);
+    };
+
+    const changePopupHandler = () => {
+        setOnPopup(prev => !prev);
+    };
+
     useTrackEvent(`click_필터-${nowFilterList}`, [nowFilterList])
 
     useEffect(() => {
@@ -42,38 +50,41 @@ const 유사표현단어 = ({
         <main className="flex flex-col items-center justify-center w-full h-full px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
                 <h2 className="font-bold headline-2">유사단어 표현</h2>
-                <div onClick={changePopup} className={`flex relative items-center justify-center w-40r h-40r rounded-full ${onPopup ? 'bg-[#F1F1F1]' : ''}`}>
-                    <button>
-                        <img className="w-20r h-17r" src="/svg/alignIcon.svg" alt="alignIcon" />
-                    </button>
+                <TrackButton 
+                    eventName={`click_분류-${!onPopup ? 'ON' : 'OFF'}`}
+                    onClick={changePopupHandler}
+                    className={`flex relative items-center justify-center w-40r h-40r rounded-full ${onPopup ? 'bg-[#F1F1F1]' : ''}`}
+                >
+                    <img className="w-20r h-17r" src="/svg/alignIcon.svg" alt="alignIcon" />
                     <PopUp
                         nowAlign={nowAlign}
                         setNowAlign={setNowAlign}
                         on={onPopup}
                     />
-                </div>
+                </TrackButton>
             </header>
             <hr className="w-full h-1r bg-[#E5E5E5]" />
             <fieldset className="flex items-start w-full gap-24r my-17r px-14r">
-                {
-                    ['기본표현', '행동표현', '신체감각', '제외필터'].map((text, i) =>
-                        <FilterSelect onChange={modifyFilterList} checked={nowFilterList.includes(text)} key={i} text={text} />
-                    )
-                }
+                {FILTER_LIST.map((text, i) =>
+                    <FilterSelect 
+                        key={i}
+                        text={text}
+                        onChange={modifyFilterList}
+                        checked={nowFilterList.includes(text)}
+                    />
+                )}
             </fieldset>
             <hr className="w-full h-1r bg-[#E5E5E5]" />
             <section className="flex flex-wrap w-full my-18r mx-48r gap-8r">
-                {
-                    paginatedList.map((_word, i) =>
-                        <WordBox
-                            setWord={handleWordBoxClick}
-                            active={word === _word.text}
-                            key={i}
-                            word={_word.text}
-                            소속={_word['소속']}
-                        />
-                    )
-                }
+                {paginatedList.map((_word, i) =>
+                    <WordBox
+                        setWord={handleWordBoxClick}
+                        active={word === _word.text}
+                        key={i}
+                        word={_word.text}
+                        소속={_word['소속']}
+                    />
+                )}
             </section>
             <PagiNation
                 lastNum={Math.ceil(sorted유사표현List.length / PAGE_SIZE)}
@@ -103,21 +114,3 @@ const FilterSelect = ({ text, checked, onChange }) => {
 }
 
 export default 유사표현단어;
-
-
-const sortKoreanWordsList = (words) => words.sort((a, b) => a.text.localeCompare(b.text, 'ko'));
-
-const aligned유사표현List = (alignType, words) => {
-    if (alignType === '글자순') return sortKoreanWordsList(words);
-    return words.sort((a, b) => b[alignType] - a[alignType]);
-};
-
-const filtered유사표현List = (filterList, words) => {
-    const filteredList = words.filter((word) => filterList.includes(word.type));
-    return filterList.includes('제외필터') ? filteredList.filter((word) => word['친숙성'] > 400) : filteredList;
-};
-
-const getSortedFiltered유사표현List = (alignType, filterList, 유사표현List) => {
-    const alignedList = aligned유사표현List(alignType, 유사표현List);
-    return filtered유사표현List(filterList, alignedList);
-};
