@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Doughnut, getElementAtEvent } from 'react-chartjs-2';
 import { Chart, ArcElement} from 'chart.js';
-import { trackEvent } from '../../logging/amplitude';
+import { trackEvent } from 'feature/logging/amplitude';
 
 Chart.register(ArcElement);
 

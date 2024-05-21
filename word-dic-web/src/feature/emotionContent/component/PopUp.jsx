@@ -1,5 +1,5 @@
-import React, { useEffect, useCallback } from "react";
-import useTrackEvent from '../../logging/useTrackEvent';
+import React, { useCallback } from "react";
+import useTrackEvent from 'feature/logging/useTrackEvent';
 
 const PopUp = ({ on, nowAlign, setNowAlign }) => {
 

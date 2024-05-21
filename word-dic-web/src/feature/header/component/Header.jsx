@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import 기본표현 from '../../../data/기본표현.json';
+import 기본표현 from 'data/기본표현.json';
 import SearchBar from './SearchBar';
 import TitleHeader from './TitleHeader';
 

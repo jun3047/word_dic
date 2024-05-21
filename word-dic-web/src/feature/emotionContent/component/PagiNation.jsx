@@ -1,4 +1,4 @@
-import TrackButton from "../../logging/useTrackEvent";
+import TrackButton from "feature/logging/TrackButton";
 
 const PagiNation = ({lastNum, nowPageNum, setNowPageNum}) => {
 
