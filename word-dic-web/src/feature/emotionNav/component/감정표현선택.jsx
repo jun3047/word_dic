@@ -2,7 +2,7 @@ import React, { useMemo, useCallback } from 'react';
 import DoubleDonutChart from './DoubleDonutChart';
 import CardList from './CardList';
 import 기본표현 from 'data/기본표현.json';
-import TrackButton from 'feature/logging/useTrackEvent';
+import TrackButton from 'feature/logging/TrackButton';
 
 const 감정표현선택 = ({ wordData, word, isCard, setIsCard, setWord }) => {
 
