@@ -1,14 +1,11 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import PagiNation from "./PagiNation";
-import WordBox from "./WordBox";
-import PopUp from './PopUp';
+import PagiNation from "feature/common/component/PagiNation";
+import WordBox from "feature/common/component/WordBox";
+import PopUp from 'feature/similarExpressionWords/component/PopUp';
 import TrackButton from 'feature/logging/TrackButton'
 import useTrackEvent from 'feature/logging/useTrackEvent'
 import { getSortedFiltered유사표현List } from 'util/getSortedFiltered유사표현List';
-
-
-const PAGE_SIZE = 20;
-const FILTER_LIST = ['기본표현', '행동표현', '신체감각', '제외필터'];
+import { WORO_BOX_SIZE, FILTER_LIST } from 'data/constant';
 
 const 유사표현단어 = ({
     word,
@@ -18,16 +15,26 @@ const 유사표현단어 = ({
     const [page, setPage] = useState(1);
     const [nowAlign, setNowAlign] = useState('친숙성');
     const [nowFilterList, setNowFilterList] = useState(['기본표현']);
-    const [onPopup, setOnPopup] = useState(false);
 
     const sorted유사표현List = useMemo(() => {
         return getSortedFiltered유사표현List(nowAlign, nowFilterList, 유사표현List);
     }, [nowAlign, nowFilterList, 유사표현List]);
 
     const paginatedList = useMemo(() => {
-        const start = (page - 1) * PAGE_SIZE;
-        return sorted유사표현List.slice(start, start + PAGE_SIZE);
+        const start = (page - 1) * WORO_BOX_SIZE;
+        return sorted유사표현List.slice(start, start + WORO_BOX_SIZE);
     }, [sorted유사표현List, page]);
+
+    useEffect(() => {
+        setPage(1);
+    }, [nowAlign, nowFilterList, 유사표현List]);
+
+    
+    useTrackEvent(`click_필터-${nowFilterList}`, [nowFilterList])
+    
+    const [onPopup, setOnPopup] = useState(false);
+    
+    const changePopupHandler = () => setOnPopup(prev => !prev);
 
     const handleWordBoxClick = useCallback((text) => {
         setWord(text);
@@ -36,16 +43,6 @@ const 유사표현단어 = ({
     const modifyFilterList = (text) => {
         setNowFilterList(prev => prev.includes(text) ? prev.filter((filter) => filter !== text) : [...prev, text]);
     };
-
-    const changePopupHandler = () => {
-        setOnPopup(prev => !prev);
-    };
-
-    useTrackEvent(`click_필터-${nowFilterList}`, [nowFilterList])
-
-    useEffect(() => {
-        setPage(1);
-    }, [nowAlign, nowFilterList, 유사표현List]);
 
     return (
         <main className="flex flex-col items-center justify-center w-full h-full px-40r">
@@ -88,7 +85,7 @@ const 유사표현단어 = ({
                 )}
             </section>
             <PagiNation
-                lastNum={Math.ceil(sorted유사표현List.length / PAGE_SIZE)}
+                lastNum={Math.ceil(sorted유사표현List.length / WORO_BOX_SIZE)}
                 nowPageNum={page}
                 setNowPageNum={setPage}
             />
