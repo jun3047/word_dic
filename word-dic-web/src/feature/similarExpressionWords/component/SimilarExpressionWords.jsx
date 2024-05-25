@@ -23,17 +23,17 @@ const 유사표현단어 = ({
     useTrackEvent(`click_필터-${filterList}`, [filterList])
 
     return (
-        <main className="flex flex-col items-center justify-center w-full h-full px-40r">
+        <main className="flex flex-col items-center justify-start w-full h-full px-40r">
             <FilterHeader
                 alignType={alignType}
                 setAlignType={setAlignType}
             />
-            <hr className="w-full h-1r bg-[#E5E5E5]" />
+            <hr className="w-full h-1r bg-[#E5E5E5] border-0 dark:bg-c-grey-60" />
             <FilterList 
                 filterList={filterList}
                 modifyFilterList={modifyFilterList}
             />
-            <hr className="w-full h-1r bg-[#E5E5E5]" />
+            <hr className="w-full h-1r bg-[#E5E5E5] border-0 dark:bg-c-grey-60" />
             <WordList
                 word={word}
                 setWord={setWord}

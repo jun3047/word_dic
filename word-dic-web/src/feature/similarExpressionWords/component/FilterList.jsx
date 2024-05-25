@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { FILTER_LIST } from 'data/constant';
 
@@ -19,7 +18,7 @@ const FilterList = ({ filterList, modifyFilterList }) => {
 
 const FilterSelect = ({ text, checked, onChange }) => {
     return (
-        <label htmlFor={text} className="font-bold subTitle-1 text-[#ABABAB] hover:cursor-pointer">
+        <label htmlFor={text} className="font-bold subTitle-1 dark:text-title-2 text-[#ABABAB] hover:cursor-pointer">
             <input
                 onChange={()=>onChange(text)}
                 checked={checked}

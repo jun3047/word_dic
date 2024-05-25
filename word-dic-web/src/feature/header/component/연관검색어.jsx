@@ -1,17 +1,26 @@
+import {ReactComponent as SearchIcon} from "svg/searchIcon.svg";
+
 const 연관검색어 = ({relatedKeywords, activeWord, search}) => {
 
   return (
     <section
-      className={`z-10 bg-white rounded-md top-46r right-0r py-15r absolute w-full flex flex-col shadow-md`}>
-      {relatedKeywords.map((text, i) => (
+      className={`z-10 bg-white rounded-md top-46r right-0r py-15r absolute w-full flex flex-col shadow-md dark:bg-c-grey-70`}>
+      {relatedKeywords.map((text, i) => {
+
+        const active = text === activeWord;
+
+        return (
           <button
             key={i}
             onMouseDown={()=>search(text)}
-            className={`${text === activeWord ? 'text-[#444444] bg-[#E9E9E9]': 'bg-white text-[#ABABAB]'} px-52r relative flex items-center w-[100%] h-30r caption-1 hover:text-[#444444] hover:bg-[#E9E9E9]`}>
-            <img src="./svg/searchIcon.svg" alt="검색아이콘" className="absolute w-12r h-12r top-8r left-15r" />
+            className={`${active ? 'text-[#444444] dark:text-title-2 dark:bg-c-grey-60 bg-[#E9E9E9]': 'bg-white text-[#ABABAB] dark:bg-c-grey-70 dark:text-title-2'} px-52r relative flex items-center w-[100%] h-30r caption-1 hover:text-[#444444] hover:bg-[#E9E9E9]`}>
+            <SearchIcon
+              alt="검색아이콘"
+              className={`${active ? 'dark:text-title-1':'dark:text-c-grey-40' } absolute w-12r h-12r top-8r left-15r dark:text-c-grey-40`}
+            />
             {text}
           </button>
-        ))}
+        )})}
     </section>
   )
 }

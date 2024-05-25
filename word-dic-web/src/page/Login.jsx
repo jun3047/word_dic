@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { login } from '../api/user';
-import useUserStore from '../recoil/user';
+import useUserStore from '../stores/user';
 // import {trackEvent} from "../logging/amplitude";
 
 const Login = () => {

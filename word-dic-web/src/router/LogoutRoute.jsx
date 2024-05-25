@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import useUserStore from '../recoil/user';
+import useUserStore from '../stores/user';
 
 const LogoutRoute = ({ component: Component }) => {
   const { userToken } = useUserStore();

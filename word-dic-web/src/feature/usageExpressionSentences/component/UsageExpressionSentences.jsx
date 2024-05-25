@@ -27,12 +27,12 @@ const 활용표현문장 = ({ wordData }) => {
     return (
         <section className="flex flex-col items-center justify-center w-full h-full px-40r">
             <header className="flex items-center justify-between w-full py-11r h-76r">
-                <h2 className="font-bold headline-2">활용 문장 표현</h2>
+                <h2 className="font-bold headline-2 dark:text-title-2">활용 문장 표현</h2>
                 <button onClick={change활용표현} className="flex items-center justify-center w-40r h-40r">
                     <img className={`w-21r h-15r transform ${on활용표현 || "rotate-180"}`} src="/svg/downArraw_active.svg" alt="alignIcon" />
                 </button>
             </header>
-            <hr className="w-full h-1r bg-[#E5E5E5]" />
+            <hr className="w-full bg-[#E5E5E5] border-0 h-1r dark:bg-c-grey-60" />
             {on활용표현 &&
                 (<>
                     <ExampleSection

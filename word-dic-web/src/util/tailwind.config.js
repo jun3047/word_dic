@@ -55,7 +55,7 @@ module.exports = {
         },
         'c-purple': {
           40: '#e2cde5',
-          50: '#b18ccf',
+          50: '#8c8ccf',
           60: '#61619b',
         },
         'c-w_grey': {

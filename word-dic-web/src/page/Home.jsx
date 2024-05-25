@@ -34,14 +34,14 @@ const Home = () => {
   const handleSearchWordChange = (text) => setSearchWord(text);
 
   return (
-    <main className='flex flex-col px-120r py-48r'>
+    <main className='relative flex flex-col w-full h-full min-h-[100vh] duration-300 bg-white ransition-colors dark:bg-bg px-120r py-48r'>
       <Header
         word={word}
         searchWord={searchWord}
         handleSearch={handleSearch}
         handleSearchWordChange={handleSearchWordChange}
       />
-      <section className='flex flex-col w-full lg:flex-row'>
+      <section className='flex flex-col w-full h-full lg:flex-row'>
         <section className='flex flex-col w-full h-full lg:w-1/2'>
           <유사표현단어
             setWord={handleSearch}

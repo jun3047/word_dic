@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { login, register } from '../api/user';
-import useUserStore from '../recoil/user';
+import useUserStore from '../stores/user';
 
 const Reigster = () => {
   const [email, setEmail] = useState('');
