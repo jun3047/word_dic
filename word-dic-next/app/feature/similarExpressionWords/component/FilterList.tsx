@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { FILTER_LIST } from '@/app/data/constant';
 
 const FilterList = ({ filterList, modifyFilterList }: {
@@ -41,4 +41,4 @@ const FilterSelect = ({ text, checked, onChange }: {
     );
 }
 
-export default FilterList;
+export default memo(FilterList);

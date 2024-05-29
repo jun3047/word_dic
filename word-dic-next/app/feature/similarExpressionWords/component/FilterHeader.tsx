@@ -2,6 +2,7 @@ import PopUp from '@/app/feature/similarExpressionWords/component/PopUp';
 import TrackButton from '@/app/feature/logging/TrackButton';
 import useToggle from "@/app/feature/common/hook/useToggle";
 import AlignIcon from '@/public/svg/alignIcon.svg';
+import { memo } from 'react';
 
 const FilterHeader = ({
     alignType,
@@ -35,4 +36,4 @@ const FilterHeader = ({
     )
 }
 
-export default FilterHeader;
+export default memo(FilterHeader);

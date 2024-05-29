@@ -13,7 +13,6 @@ const 연관검색어: React.FC<연관검색어Props> = ({ relatedKeywords, acti
       className={`z-10 bg-white rounded-md top-46r right-0r py-15r absolute w-full flex flex-col shadow-md dark:bg-c-grey-70`}>
       {relatedKeywords.map((text, i) => {
         const active = text === activeWord;
-
         return (
           <button
             key={i}

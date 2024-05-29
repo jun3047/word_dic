@@ -1,4 +1,3 @@
-// useDarkMode.js
 import { useEffect } from 'react';
 import useDarkModeStore from '@/app/stores/darkMode';
 

@@ -1,5 +1,6 @@
 import TrackButton from "@/app/feature/logging/TrackButton";
 import Image from "next/image";
+import { memo } from "react";
 
 const PagiNation = ({ lastNum, nowPageNum, setNowPageNum }: {
     lastNum: number,
@@ -51,4 +52,4 @@ const PagiNation = ({ lastNum, nowPageNum, setNowPageNum }: {
     )
 }
 
-export default PagiNation;
+export default memo(PagiNation);

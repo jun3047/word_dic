@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import WordBox from '@/app/feature/common/component/WordBox';
 
 const WordList = ({
@@ -25,4 +25,4 @@ const WordList = ({
     );
 };
 
-export default WordList;
+export default memo(WordList);

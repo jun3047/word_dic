@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import 유사표현단어 from '@/app/feature/similarExpressionWords/component/SimilarExpressionWords';
 import 활용표현문장 from '@/app/feature/usageExpressionSentences/component/UsageExpressionSentences';
 import 감정표현선택 from '@/app/feature/emotionNav/component/감정표현선택';
@@ -14,8 +14,6 @@ import useToggle from '@/app/feature/common/hook/useToggle';
 export default function Home() {
   const initWord = '화나다';
   const [word, setWord] = useState<string>(initWord);
-  const [searchWord, setSearchWord] = useState<string>('');
-  const [isCard, changeIsCard] = useToggle(true);
   const { wordData, 유사표현List } = useMemo(() => findWordData(word, 기본표현), [word]);
 
   useTrackEvent('view_메인-IN');
@@ -29,19 +27,15 @@ export default function Home() {
     };
   }, []);
 
-  const handleSearch = (text: string) => {
+  const handleSearch = useCallback((text: string) => {
     setWord(text);
-    setSearchWord(text);
-  };
-  const handleSearchWordChange = (text: string) => setSearchWord(text);
+  }, [setWord]);
 
   return (
     <main className='relative flex flex-col w-full h-full min-h-[100vh] duration-300 bg-white ransition-colors dark:bg-bg px-120r py-48r'>
       <Header
         word={word}
-        searchWord={searchWord}
         handleSearch={handleSearch}
-        handleSearchWordChange={handleSearchWordChange}
       />
       <section className='flex flex-col w-full h-full lg:flex-row'>
         <section className='flex flex-col w-full h-full lg:w-1/2'>
@@ -56,8 +50,6 @@ export default function Home() {
           wordData={wordData}
           word={word}
           setWord={handleSearch}
-          isCard={isCard}
-          changeIsCard={changeIsCard}
         />
       </section>
     </main>

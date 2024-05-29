@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { trackEvent } from '@/app/feature/logging/amplitude';
 import useTrackEvent from '@/app/feature/logging/useTrackEvent';
 import 연관검색어 from './연관검색어';
@@ -7,16 +7,20 @@ import useInputFocus from '@/app/feature/header/hook/useInputFocus';
 import useSearchKeyPressHandler from '../hook/useSearchKeyPressHandler';
 import DarkModeToggle from '@/app/feature/header/component/darkModeToggle';
 import SearchIcon from "@/public/svg/searchIcon.svg";
+import getRelatedWord from '@/app/utils/getRelatedWord';
 
-const SearchBar = ({ relatedKeywords, setSearchWord, searchWord, on, search }: {
-    relatedKeywords: string[],
-    setSearchWord: (searchWord: string) => void,
-    searchWord: string,
-    on: boolean,
+const SearchBar = ({ search }: {
     search: (searchWord: string) => void
 }) => {
+
+    const [searchWord, setSearchWord] = useState<string>('');
+    const relatedKeywords = useMemo(() => searchWord ? getRelatedWord(searchWord) : [], [searchWord]);
+
     const [activeWord, setActiveWord] = useActiveWord(relatedKeywords);
     const [inputFocus, handleFocus, handleBlur] = useInputFocus(false);
+
+    const on = relatedKeywords.length > 0;
+
 
     const [inputRef, handleKeyPress] = useSearchKeyPressHandler(
         relatedKeywords,
@@ -75,4 +79,4 @@ const SearchBar = ({ relatedKeywords, setSearchWord, searchWord, on, search }: {
     );
 };
 
-export default SearchBar;
+export default memo(SearchBar);

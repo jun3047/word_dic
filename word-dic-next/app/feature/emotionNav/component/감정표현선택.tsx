@@ -8,17 +8,18 @@ import ChartIcon from "@/public/svg/chartIcon.svg";
 import EmojiDarkIcon from "@/public/svg/emoji_dark.svg";
 import ChartDarkIcon from "@/public/svg/chartIcon.svg";
 import useDarkMode from '@/app/feature/header/hook/useDarkMode';
+import useToggle from '../../common/hook/useToggle';
 
-const 감정표현선택 = ({ wordData, word, isCard, changeIsCard, setWord }: {
+const 감정표현선택 = ({ wordData, word, setWord }: {
     wordData: Expression;
     word: string;
-    isCard: boolean;
-    changeIsCard: () => void;
     setWord: (text: string) => void
 }) => {
 
+    const [isCard, changeIsCard] = useToggle(true);
     const chartWord = useChartWord(word);
     const [isDarkMode] = useDarkMode();
+    console.log(isDarkMode);
 
     return (
         <nav className="relative flex flex-col items-center justify-center w-full h-full lg:w-1/2 min-w-580r px-40r">

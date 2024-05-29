@@ -1,6 +1,7 @@
 import useDarkMode from "@/app/feature/header/hook/useDarkMode";
 import MoonIcon from "@/public/svg/moon.svg";
 import SunIcon from "@/public/svg/sun.svg";
+import { memo } from "react";
 
 const DarkModeToggle = () => {
 
@@ -20,6 +21,6 @@ const DarkModeToggle = () => {
       />
     </button>
   );
-}
+};
 
-export default DarkModeToggle;
+export default memo(DarkModeToggle);
