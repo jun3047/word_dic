@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "SUITE";
+  font-weight: normal;
+  src: url("/font/SUITE.ttf") format("truetype");
+}
+
+html{
+  font-size: 12px;
+  font-family: 'SUITE';
+}
+
+body {
+  font-family: 'SUITE';
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

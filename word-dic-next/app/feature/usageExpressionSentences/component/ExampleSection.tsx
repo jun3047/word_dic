@@ -1,0 +1,32 @@
+import WordBox from "@/app/feature/common/component/WordBox"
+import { EXAMPLE_SETENCE_SIZE } from "@/app/data/constant";
+
+const ExampleSection = ({ mean, paginatedList, 소속, page }: IExampleSection) => {
+    return (
+        <section className="flex flex-col justify-start w-full px-8r min-h-250r">
+            {mean && (
+                <p className="body-text text-[#636363] py-10r w-full flex items-start dark:text-title-2">
+                    <span className="font-semibold mt-0 text-[#434343] mr-4r dark:text-title-2">[뜻]</span>
+                    {mean}
+                </p>
+            )}
+            {paginatedList.map((text, i) => (
+                <div key={i} className="body-text text-[#636363] py-10r w-full flex items-start dark:text-title-2">
+                    <span className="font-semibold text-[#434343] w-40r dark:text-title-2">{i + 1 + (page - 1) * EXAMPLE_SETENCE_SIZE}.</span>
+                    <p className="flex flex-wrap dark:text-title-2">
+                        <NotWordBox texts={text[0]} />
+                        <WordBox active={true} word={text[1]} 소속={소속} />
+                        <NotWordBox texts={text[2]} />
+                    </p>
+                </div>
+            )
+            )}
+        </section>
+    )
+}
+
+const NotWordBox = ({ texts }: { texts: string }) => {
+    return texts && texts.split(' ').map((text, i) => <span key={i} className="m-3r">{text}</span>)
+}
+
+export default ExampleSection;
