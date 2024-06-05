@@ -1,3 +1,5 @@
+'use client'
+
 import React, { memo, useMemo, useState } from 'react';
 import { trackEvent } from '@/app/feature/logging/amplitude';
 import useTrackEvent from '@/app/feature/logging/useTrackEvent';
@@ -9,18 +11,18 @@ import DarkModeToggle from '@/app/feature/header/component/darkModeToggle';
 import SearchIcon from "@/public/svg/searchIcon.svg";
 import getRelatedWord from '@/app/utils/getRelatedWord';
 
-const SearchBar = ({ search }: {
-    search: (searchWord: string) => void
+const SearchBar = ({ search, 기본표현 }: {
+    search: (searchWord: string) => void,
+    기본표현: Record<string, Expression[]>
 }) => {
 
     const [searchWord, setSearchWord] = useState<string>('');
-    const relatedKeywords = useMemo(() => searchWord ? getRelatedWord(searchWord) : [], [searchWord]);
+    const relatedKeywords = useMemo(() => searchWord ? getRelatedWord(searchWord, 기본표현) : [], [searchWord]);
 
     const [activeWord, setActiveWord] = useActiveWord(relatedKeywords);
     const [inputFocus, handleFocus, handleBlur] = useInputFocus(false);
 
     const on = relatedKeywords.length > 0;
-
 
     const [inputRef, handleKeyPress] = useSearchKeyPressHandler(
         relatedKeywords,

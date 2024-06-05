@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react';
 import emotionList from '@/app/data/emotionList';
 import TrackButton from '@/app/feature/logging/TrackButton';
+import Image from 'next/image';
 
 const CardList = ({ setWord, word }: {
     setWord: (text: string) => void;
@@ -26,7 +29,7 @@ const CardItem = ({ word, setWord, active }: {
             onClick={() => { setWord(word) }
             }>
             <section className={`dark:text-title-2 flex ${active ? "bg-[#E9E9E9] dark:bg-c-grey-70" : 'bg-white dark:bg-bg'} hover:bg-[#E9E9E9] dark:hover:bg-c-grey-70 flex-col gap-10r justify-center items-center border-2 rounded-xl w-160r h-200r border-[#EDEDED] dark:border-[#636363]`}>
-                <img src={`/emoji/${word}.png`} alt={`${word}`} className='w-130r h-130r' />
+                <Image src={`/emoji/${word}.png`} alt={`${word}`} className='w-130r h-130r' width={130} height={130} />
                 <p className='font-semibold subTitle-1'>{word}</p>
             </section>
         </TrackButton>

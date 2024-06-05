@@ -1,3 +1,5 @@
+'use client'
+
 import PopUp from '@/app/feature/similarExpressionWords/component/PopUp';
 import TrackButton from '@/app/feature/logging/TrackButton';
 import useToggle from "@/app/feature/common/hook/useToggle";

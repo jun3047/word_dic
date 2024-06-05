@@ -21,7 +21,6 @@ export const findWordData = (word: string, db: Record<string, Expression[]>): Fi
         };
     }
 
-
     return {
         wordData: EMPTY_EXPRESSION,
         유사표현List: []

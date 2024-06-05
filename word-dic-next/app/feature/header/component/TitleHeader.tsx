@@ -6,7 +6,7 @@ const TitleHeader = ({ word }: { word: string }) => {
                 <hr className="border-0 w-full h-1r bg-[#E5E5E5] dark:bg-c-grey-60" />
                 <h1 className="font-bold ml-37r headline-1 dark:text-title-1">{word}</h1>
                 <hr className="border-0 w-full h-1r bg-[#E5E5E5] dark:bg-c-grey-60" />
-            </section>  
+            </section>
         </header>
     )
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import TrackButton from "@/app/feature/logging/TrackButton";
 import Image from "next/image";
 import { memo } from "react";

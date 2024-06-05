@@ -1,3 +1,5 @@
+'use client';
+
 import useDarkMode from "@/app/feature/header/hook/useDarkMode";
 import MoonIcon from "@/public/svg/moon.svg";
 import SunIcon from "@/public/svg/sun.svg";

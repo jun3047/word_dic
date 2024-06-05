@@ -1,3 +1,5 @@
+'use client'
+
 import { trackEvent } from '@/app/feature/logging/amplitude';
 import { ReactNode, MouseEventHandler } from 'react';
 

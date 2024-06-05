@@ -1,5 +1,3 @@
-// next.config.mjs
-
 const nextConfig = {
     webpack(config) {
         config.module.rules.push({
@@ -9,6 +7,9 @@ const nextConfig = {
 
         return config;
     },
+    experimental: {
+        missingSuspenseWithCSRBailout: false,
+    },
 };
 
-export default nextConfig;  
+export default nextConfig;

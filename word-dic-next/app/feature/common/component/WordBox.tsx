@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import TrackButton from '@/app/feature/logging/TrackButton';
 

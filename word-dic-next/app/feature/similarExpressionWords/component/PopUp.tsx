@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useCallback } from "react";
 import useTrackEvent from '@/app/feature/logging/useTrackEvent';
 import CheckIcon from "@/public/svg/checkIcon.svg";

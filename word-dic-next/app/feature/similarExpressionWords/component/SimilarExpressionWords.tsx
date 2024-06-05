@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react';
 import PagiNation from "@/app/feature/common/component/PagiNation";
 import useTrackEvent from '@/app/feature/logging/useTrackEvent'

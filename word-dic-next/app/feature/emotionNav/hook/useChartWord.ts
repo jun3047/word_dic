@@ -1,7 +1,6 @@
 import { useMemo, useCallback } from 'react';
-import 기본표현 from '@/app/data/기본표현.json';
 
-const useChartWord = (word: string) => {
+const useChartWord = (word: string, 기본표현: Record<string, Expression[]>) => {
 
     const getChartWord = useCallback((word: string) => {
         for (const key in 기본표현) {

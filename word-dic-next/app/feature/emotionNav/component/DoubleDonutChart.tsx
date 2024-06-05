@@ -1,8 +1,11 @@
+'use client'
+
 import React, { useRef } from 'react';
 import { Doughnut, getElementAtEvent } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
 import { trackEvent } from '@/app/feature/logging/amplitude';
 import useDarkMode from '@/app/feature/header/hook/useDarkMode';
+import Image from 'next/image';
 
 Chart.register(ArcElement);
 
@@ -99,10 +102,12 @@ const DoubleDonutChart = ({ setWord, emojiName, activeWord }: any) => {
 
     return (
         <section className="relative flex items-center justify-center w-full h-full aspect-square min-w-500r min-h-500r max-w-590r">
-            <img
+            <Image
                 className="absolute w-190r h-190r"
                 src={`/emoji/${emojiName}.png`}
                 alt="emoji"
+                width={190}
+                height={190}
             />
             <Doughnut ref={chartRef} onClick={onClick} data={data} options={options} />
         </section>

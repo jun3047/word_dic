@@ -1,7 +1,6 @@
-import 기본표현 from '@/app/data/기본표현.json';
-
-const getRelatedWord = (word: string): string[] => {
+const getRelatedWord = (word: string, 기본표현: Record<string, Expression[]>) => {
   let relatedWords: string[] = [];
+
   for (const key in 기본표현) {
     const list = 기본표현[key];
     const found = list.filter(item => item.text.includes(word));

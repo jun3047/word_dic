@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import DoubleDonutChart from './DoubleDonutChart';
 import CardList from './CardList';
@@ -10,16 +12,16 @@ import ChartDarkIcon from "@/public/svg/chartIcon.svg";
 import useDarkMode from '@/app/feature/header/hook/useDarkMode';
 import useToggle from '../../common/hook/useToggle';
 
-const 감정표현선택 = ({ wordData, word, setWord }: {
+const 감정표현선택 = ({ wordData, word, setWord, 기본표현 }: {
     wordData: Expression;
     word: string;
-    setWord: (text: string) => void
+    setWord: (text: string) => void;
+    기본표현: Record<string, Expression[]>
 }) => {
 
     const [isCard, changeIsCard] = useToggle(true);
-    const chartWord = useChartWord(word);
+    const chartWord = useChartWord(word, 기본표현);
     const [isDarkMode] = useDarkMode();
-    console.log(isDarkMode);
 
     return (
         <nav className="relative flex flex-col items-center justify-center w-full h-full lg:w-1/2 min-w-580r px-40r">
